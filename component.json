@@ -1,0 +1,24 @@
+{
+  "name": "noflo-math",
+  "description": "Mathematical components for NoFlo",
+  "author": "Henri Bergius <henri.bergius@iki.fi>",
+  "repo": "bergie/noflo-math",
+  "version": "0.0.1",
+  "keywords": [
+  ],
+  "dependencies": {
+    "bergie/noflo": "*"
+  },
+  "scripts": [
+    "components/Add.coffee",
+    "index.js"
+  ],
+  "json": [
+    "component.json"
+  ],
+  "noflo": {
+    "components": {
+      "Add": "components/Add.coffee"
+    }
+  }
+}
