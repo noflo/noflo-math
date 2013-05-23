@@ -2,23 +2,23 @@ noflo = require 'noflo'
 
 class Add extends noflo.Component
   constructor: ->
-    @a = null
-    @b = null
+    @augend = null
+    @addend = null
     @inPorts =
-      a: new noflo.Port
-      b: new noflo.Port
+      augend: new noflo.Port
+      addend: new noflo.Port
     @outPorts =
-      result: new noflo.Port
+      sum: new noflo.Port
 
-    @inPorts.a.on 'data', (data) =>
-      @a = data
-      do @add unless @b is null
-    @inPorts.b.on 'data', (data) =>
-      @b = data
-      do @add unless @a is null
+    @inPorts.augend.on 'data', (data) =>
+      @augend = data
+      do @add unless @addend is null
+    @inPorts.addend.on 'data', (data) =>
+      @addend = data
+      do @add unless @augend is null
 
   add: ->
-    @outPorts.result.send @a + @b
-    @outPorts.result.disconnect()
+    @outPorts.sum.send @augend + @addend
+    @outPorts.sum.disconnect()
 
 exports.getComponent = -> new Add
