@@ -12,6 +12,7 @@
   "scripts": [
     "components/Add.coffee",
     "components/Subtract.coffee",
+    "components/Multiply.coffee",
     "index.js"
   ],
   "json": [
@@ -20,7 +21,8 @@
   "noflo": {
     "components": {
       "Add": "components/Add.coffee",
-      "Subtract": "components/Subtract.coffee"
+      "Subtract": "components/Subtract.coffee",
+      "Multiply": "components/Multiply.coffee"
     }
   }
 }
