@@ -13,6 +13,7 @@
     "components/Add.coffee",
     "components/Subtract.coffee",
     "components/Multiply.coffee",
+    "components/Divide.coffee",
     "index.js"
   ],
   "json": [
@@ -22,7 +23,8 @@
     "components": {
       "Add": "components/Add.coffee",
       "Subtract": "components/Subtract.coffee",
-      "Multiply": "components/Multiply.coffee"
+      "Multiply": "components/Multiply.coffee",
+      "Divide": "components/Divide.coffee"
     }
   }
 }
