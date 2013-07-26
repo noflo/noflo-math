@@ -21,7 +21,8 @@
       "Add": "components/Add.coffee",
       "Subtract": "components/Subtract.coffee",
       "Multiply": "components/Multiply.coffee",
-      "Divide": "components/Divide.coffee"
+      "Divide": "components/Divide.coffee",
+      "CountSum": "components/CountSum.coffee"
     }
   },
   "dependencies": {
