@@ -54,3 +54,5 @@ class Compare extends noflo.Component
 
   send: (val) ->
     @outPorts.pass.send @value
+
+exports.getComponent = -> new Compare
