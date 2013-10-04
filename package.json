@@ -22,6 +22,8 @@
       "Subtract": "components/Subtract.coffee",
       "Multiply": "components/Multiply.coffee",
       "Divide": "components/Divide.coffee",
+      "CalculateAngle": "components/CalculateAngle.coffee",
+      "CalculateDistance": "components/CalculateDistance.coffee",
       "CountSum": "components/CountSum.coffee"
     }
   },
