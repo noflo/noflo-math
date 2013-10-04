@@ -5,10 +5,11 @@ class Divide extends noflo.Component
     @dividend = null
     @divisor = null
     @inPorts =
-      dividend: new noflo.Port
-      divisor: new noflo.Port
+      dividend: new noflo.Port 'number'
+      divisor: new noflo.Port 'number'
+      clear: new noflo.Port 'bang'
     @outPorts =
-      quotient: new noflo.Port
+      quotient: new noflo.Port 'number'
 
     @inPorts.dividend.on 'data', (data) =>
       @dividend = data
@@ -16,6 +17,10 @@ class Divide extends noflo.Component
     @inPorts.divisor.on 'data', (data) =>
       @divisor = data
       do @add unless @dividend is null
+
+    @inPorts.clear.on 'data', (data) =>
+      @dividend = null
+      @divisor = null
 
   add: ->
     @outPorts.quotient.send @dividend / @divisor

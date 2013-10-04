@@ -19,6 +19,7 @@ class CalculateDistance extends noflo.Component
   calculate: ->
     deltaX = @destination.x - @origin.x
     deltaY = @destination.y - @origin.y
+    @origin = null
     @destination = null
     distance = Math.sqrt Math.pow(deltaX, 2) + Math.pow(deltaY, 2)
     @outPorts.distance.send distance

@@ -19,6 +19,7 @@ class CalculateAngle extends noflo.Component
   calculate: ->
     deltaX = @destination.x - @origin.x
     deltaY = @destination.y - @origin.y
+    @origin = null
     @destination = null
     angle = (Math.atan2(deltaY, deltaX) * 180 / Math.PI) + 90
     angle = angle + 360 if angle < 0

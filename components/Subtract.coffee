@@ -5,10 +5,11 @@ class Subtract extends noflo.Component
     @minuend = null
     @subtrahend = null
     @inPorts =
-      minuend: new noflo.Port
-      subtrahend: new noflo.Port
+      minuend: new noflo.Port 'number'
+      subtrahend: new noflo.Port 'number'
+      clear: new noflo.Port 'bang'
     @outPorts =
-      difference: new noflo.Port
+      difference: new noflo.Port 'number'
 
     @inPorts.minuend.on 'data', (data) =>
       @minuend = data
@@ -16,6 +17,10 @@ class Subtract extends noflo.Component
     @inPorts.subtrahend.on 'data', (data) =>
       @subtrahend = data
       do @add unless @minuend is null
+
+    @inPorts.clear.on 'data', (data) =>
+      @minuend = null
+      @subtrahend = null
 
   add: ->
     @outPorts.difference.send @minuend - @subtrahend

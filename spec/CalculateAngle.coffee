@@ -27,7 +27,7 @@ describe 'CalculateAngle component', ->
     it 'should return correct angle (135)', (done) ->
       angle.on 'data', (data) ->
         chai.expect(data).to.equal 135
-        chai.expect(c.origin).to.be.an 'object'
+        chai.expect(c.origin).to.be.a 'null'
         chai.expect(c.destination).to.be.a 'null'
         done()
       origin.send
@@ -39,8 +39,6 @@ describe 'CalculateAngle component', ->
     it 'should return correct angle (315)', (done) ->
       angle.on 'data', (data) ->
         chai.expect(data).to.equal 315
-        chai.expect(c.origin).to.be.an 'object'
-        chai.expect(c.destination).to.be.a 'null'
         done()
       origin.send
         x: 0
@@ -51,8 +49,6 @@ describe 'CalculateAngle component', ->
     it 'should return correct angle (180)', (done) ->
       angle.on 'data', (data) ->
         chai.expect(data).to.equal 180
-        chai.expect(c.origin).to.be.an 'object'
-        chai.expect(c.destination).to.be.a 'null'
         done()
       origin.send
         x: 0
@@ -63,8 +59,6 @@ describe 'CalculateAngle component', ->
     it 'should return correct angle (270)', (done) ->
       angle.on 'data', (data) ->
         chai.expect(data).to.equal 270
-        chai.expect(c.origin).to.be.an 'object'
-        chai.expect(c.destination).to.be.a 'null'
         done()
       origin.send
         x: 0
@@ -75,8 +69,6 @@ describe 'CalculateAngle component', ->
     it 'should return correct angle (0)', (done) ->
       angle.on 'data', (data) ->
         chai.expect(data).to.equal 0
-        chai.expect(c.origin).to.be.an 'object'
-        chai.expect(c.destination).to.be.a 'null'
         done()
       origin.send
         x: 0
@@ -87,8 +79,6 @@ describe 'CalculateAngle component', ->
     it 'should return correct angle (45)', (done) ->
       angle.on 'data', (data) ->
         chai.expect(data).to.equal 45
-        chai.expect(c.origin).to.be.an 'object'
-        chai.expect(c.destination).to.be.a 'null'
         done()
       origin.send
         x: 1
@@ -99,8 +89,6 @@ describe 'CalculateAngle component', ->
     it 'should return correct angle (270)', (done) ->
       angle.on 'data', (data) ->
         chai.expect(data).to.equal 270
-        chai.expect(c.origin).to.be.an 'object'
-        chai.expect(c.destination).to.be.a 'null'
         done()
       origin.send
         x: 1

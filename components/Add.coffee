@@ -5,10 +5,11 @@ class Add extends noflo.Component
     @augend = null
     @addend = null
     @inPorts =
-      augend: new noflo.Port
-      addend: new noflo.Port
+      augend: new noflo.Port 'number'
+      addend: new noflo.Port 'number'
+      clear: new noflo.Port 'bang'
     @outPorts =
-      sum: new noflo.Port
+      sum: new noflo.Port 'number'
 
     @inPorts.augend.on 'data', (data) =>
       @augend = data
@@ -16,6 +17,10 @@ class Add extends noflo.Component
     @inPorts.addend.on 'data', (data) =>
       @addend = data
       do @add unless @augend is null
+
+    @inPorts.clear.on 'data', (data) =>
+      @augend = null
+      @addend = null
 
   add: ->
     @outPorts.sum.send @augend + @addend

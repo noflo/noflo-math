@@ -5,10 +5,11 @@ class Multiply extends noflo.Component
     @multiplicand = null
     @multiplier = null
     @inPorts =
-      multiplicand: new noflo.Port
-      multiplier: new noflo.Port
+      multiplicand: new noflo.Port 'number'
+      multiplier: new noflo.Port 'number'
+      clear: new noflo.Port 'bang'
     @outPorts =
-      product: new noflo.Port
+      product: new noflo.Port 'number'
 
     @inPorts.multiplicand.on 'data', (data) =>
       @multiplicand = data
@@ -16,6 +17,10 @@ class Multiply extends noflo.Component
     @inPorts.multiplier.on 'data', (data) =>
       @multiplier = data
       do @add unless @multiplicand is null
+
+    @inPorts.clear.on 'data', (data) =>
+      @multiplicand = null
+      @multiplier = null
 
   add: ->
     @outPorts.product.send @multiplicand * @multiplier

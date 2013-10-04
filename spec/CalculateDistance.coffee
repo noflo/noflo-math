@@ -27,7 +27,7 @@ describe 'CalculateDistance component', ->
     it 'should return correct distance', (done) ->
       distance.on 'data', (data) ->
         chai.expect(data.toPrecision(2)).to.equal '1.4'
-        chai.expect(c.origin).to.be.an 'object'
+        chai.expect(c.origin).to.be.a 'null'
         chai.expect(c.destination).to.be.a 'null'
         done()
       origin.send
