@@ -16,6 +16,7 @@
     "components/Divide.coffee",
     "components/CalculateAngle.coffee",
     "components/CalculateDistance.coffee",
+    "components/Compare.coffee",
     "components/CountSum.coffee",
     "index.js"
   ],
@@ -30,6 +31,7 @@
       "Divide": "components/Divide.coffee",
       "CalculateAngle": "components/CalculateAngle.coffee",
       "CalculateDistance": "components/CalculateDistance.coffee",
+      "Compare": "components/Compare.coffee",
       "CountSum": "components/CountSum.coffee"
     }
   }

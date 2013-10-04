@@ -24,6 +24,7 @@
       "Divide": "components/Divide.coffee",
       "CalculateAngle": "components/CalculateAngle.coffee",
       "CalculateDistance": "components/CalculateDistance.coffee",
+      "Compare": "components/Compare.coffee",
       "CountSum": "components/CountSum.coffee"
     }
   },
