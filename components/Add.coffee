@@ -1,6 +1,7 @@
 noflo = require 'noflo'
 
 class Add extends noflo.Component
+  icon: 'plus'
   constructor: ->
     @augend = null
     @addend = null

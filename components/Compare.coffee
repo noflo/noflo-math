@@ -2,6 +2,7 @@ noflo = require 'noflo'
 
 class Compare extends noflo.Component
   description: 'Compare two numbers'
+  icon: 'check'
 
   constructor: ->
     @operator = '=='

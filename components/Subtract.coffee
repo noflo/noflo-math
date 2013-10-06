@@ -1,6 +1,7 @@
 noflo = require 'noflo'
 
 class Subtract extends noflo.Component
+  icon: 'minus'
   constructor: ->
     @minuend = null
     @subtrahend = null

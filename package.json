@@ -17,6 +17,7 @@
     }
   ],
   "noflo": {
+    "icon": "plus-sign",
     "components": {
       "Add": "components/Add.coffee",
       "Subtract": "components/Subtract.coffee",

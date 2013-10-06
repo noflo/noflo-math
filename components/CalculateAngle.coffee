@@ -2,6 +2,7 @@ noflo = require 'noflo'
 
 class CalculateAngle extends noflo.Component
   description: 'Calculate the angle between two points'
+  icon: 'compass'
   constructor: ->
     @origin = null
     @destination = null

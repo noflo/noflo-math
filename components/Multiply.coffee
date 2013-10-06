@@ -1,6 +1,7 @@
 noflo = require 'noflo'
 
 class Multiply extends noflo.Component
+  icon: 'asterisk'
   constructor: ->
     @multiplicand = null
     @multiplier = null
