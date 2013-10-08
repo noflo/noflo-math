@@ -12,6 +12,7 @@ class MathComponent extends noflo.Component
     @primary =
       value: null
       group: []
+      disconnect: false
     @secondary = null
     @groups = []
 
@@ -21,7 +22,7 @@ class MathComponent extends noflo.Component
       @outPorts[res].send @calculate @primary.value, @secondary
       for group in @primary.group
         @outPorts[res].endGroup()
-      @outPorts[res].disconnect()
+      @outPorts[res].disconnect() if @primary.disconnect
 
     @inPorts[primary].on 'begingroup', (group) =>
       @groups.push group
@@ -29,9 +30,14 @@ class MathComponent extends noflo.Component
       @primary =
         value: data
         group: @groups.slice 0
+        disconnect: false
       do calculate unless @secondary is null
     @inPorts[primary].on 'endgroup', =>
       @groups.pop()
+    @inPorts[primary].on 'disconnect', =>
+      if @primary.value and @secondary
+        return @outPorts[res].disconnect()
+      @primary.disconnect = true
     @inPorts[secondary].on 'data', (data) =>
       @secondary = data
       do calculate unless @primary.value is null
@@ -40,6 +46,7 @@ class MathComponent extends noflo.Component
       @primary =
         value: null
         group: []
+        disconnect: false
       @secondary = null
       @groups = []
 
