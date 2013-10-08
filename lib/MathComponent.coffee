@@ -1,11 +1,11 @@
 noflo = require 'noflo'
 
 class MathComponent extends noflo.Component
-  constructor: (primary, secondary, res) ->
+  constructor: (primary, secondary, res, inputType = 'number') ->
     @inPorts = {}
     @outPorts = {}
-    @inPorts[primary] = new noflo.Port 'number'
-    @inPorts[secondary] = new noflo.Port 'number'
+    @inPorts[primary] = new noflo.Port inputType
+    @inPorts[secondary] = new noflo.Port inputType
     @inPorts.clear = new noflo.Port 'bang'
     @outPorts[res] = new noflo.Port 'number'
 

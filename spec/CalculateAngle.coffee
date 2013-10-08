@@ -21,14 +21,13 @@ describe 'CalculateAngle component', ->
 
   describe 'when instantiated', ->
     it 'should not hold values', ->
-      chai.expect(c.origin).to.be.a 'null'
-      chai.expect(c.destination).to.be.a 'null'
+      chai.expect(c.primary).to.be.an 'object'
+      chai.expect(c.primary.value).to.be.a 'null'
+      chai.expect(c.secondary).to.be.a 'null'
   describe 'on calculating', ->
     it 'should return correct angle (135)', (done) ->
       angle.on 'data', (data) ->
         chai.expect(data).to.equal 135
-        chai.expect(c.origin).to.be.a 'null'
-        chai.expect(c.destination).to.be.a 'null'
         done()
       origin.send
         x: 0
