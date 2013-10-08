@@ -43,6 +43,11 @@ class MathComponent extends noflo.Component
       do calculate unless @primary.value is null
 
     @inPorts.clear.on 'data', (data) =>
+      if @outPorts[res].isConnected()
+        for group in @primary.group
+          @outPorts[res].endGroup()
+        @outPorts[res].disconnect()
+
       @primary =
         value: null
         group: []
