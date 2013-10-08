@@ -21,8 +21,9 @@ describe 'Multiply component', ->
 
   describe 'when instantiated', ->
     it 'should not hold values', ->
-      chai.expect(c.multiplicand).to.be.a 'null'
-      chai.expect(c.multiplier).to.be.a 'null'
+      chai.expect(c.primary).to.be.an 'object'
+      chai.expect(c.primary.value).to.be.a 'null'
+      chai.expect(c.secondary).to.be.a 'null'
     it 'should calculate 2 + 5', (done) ->
       product.once 'data', (res) ->
         chai.expect(res).to.equal 10

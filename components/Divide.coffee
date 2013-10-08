@@ -1,29 +1,10 @@
-noflo = require 'noflo'
+{MathComponent} = require '../lib/MathComponent'
 
-class Divide extends noflo.Component
+class Divide extends MathComponent
   constructor: ->
-    @dividend = null
-    @divisor = null
-    @inPorts =
-      dividend: new noflo.Port 'number'
-      divisor: new noflo.Port 'number'
-      clear: new noflo.Port 'bang'
-    @outPorts =
-      quotient: new noflo.Port 'number'
+    super 'dividend', 'divisor', 'quotient'
 
-    @inPorts.dividend.on 'data', (data) =>
-      @dividend = data
-      do @add unless @divisor is null
-    @inPorts.divisor.on 'data', (data) =>
-      @divisor = data
-      do @add unless @dividend is null
-
-    @inPorts.clear.on 'data', (data) =>
-      @dividend = null
-      @divisor = null
-
-  add: ->
-    @outPorts.quotient.send @dividend / @divisor
-    @outPorts.quotient.disconnect()
+  calculate: (dividend, divisor) ->
+    dividend / divisor
 
 exports.getComponent = -> new Divide

@@ -1,30 +1,11 @@
-noflo = require 'noflo'
+{MathComponent} = require '../lib/MathComponent'
 
-class Add extends noflo.Component
+class Add extends MathComponent
   icon: 'plus'
   constructor: ->
-    @augend = null
-    @addend = null
-    @inPorts =
-      augend: new noflo.Port 'number'
-      addend: new noflo.Port 'number'
-      clear: new noflo.Port 'bang'
-    @outPorts =
-      sum: new noflo.Port 'number'
+    super 'augend', 'addend', 'sum'
 
-    @inPorts.augend.on 'data', (data) =>
-      @augend = data
-      do @add unless @addend is null
-    @inPorts.addend.on 'data', (data) =>
-      @addend = data
-      do @add unless @augend is null
-
-    @inPorts.clear.on 'data', (data) =>
-      @augend = null
-      @addend = null
-
-  add: ->
-    @outPorts.sum.send @augend + @addend
-    @outPorts.sum.disconnect()
+  calculate: (augend, addend) ->
+    augend + addend
 
 exports.getComponent = -> new Add
