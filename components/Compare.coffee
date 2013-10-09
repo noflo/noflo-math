@@ -31,23 +31,17 @@ class Compare extends noflo.Component
   compare: ->
     switch @operator
       when 'eq', '=='
-        @send @value if @value is @comparison
-        return
+        return @send @value if @value is @comparison
       when 'ne', '!='
-        @send @value if @value isnt @comparison
-        return
+        return @send @value if @value isnt @comparison
       when 'gt', '>'
-        @send @value if @value > @comparison
-        return
+        return @send @value if @value > @comparison
       when 'lt', '<'
-        @send @value if @value < @comparison
-        return
+        return @send @value if @value < @comparison
       when 'ge', '>='
-        @send @value if @value >= @comparison
-        return
+        return @send @value if @value >= @comparison
       when 'le', '<='
-        @send @value if @value <= @comparison
-        return
+        return @send @value if @value <= @comparison
 
     return unless @outPorts.fail.isAttached()
     @outPorts.fail.send @value
