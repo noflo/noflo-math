@@ -35,9 +35,8 @@ class MathComponent extends noflo.Component
     @inPorts[primary].on 'endgroup', =>
       @groups.pop()
     @inPorts[primary].on 'disconnect', =>
-      if @primary.value and @secondary
-        return @outPorts[res].disconnect()
       @primary.disconnect = true
+      return @outPorts[res].disconnect()
     @inPorts[secondary].on 'data', (data) =>
       @secondary = data
       do calculate unless @primary.value is null
@@ -46,7 +45,8 @@ class MathComponent extends noflo.Component
       if @outPorts[res].isConnected()
         for group in @primary.group
           @outPorts[res].endGroup()
-        @outPorts[res].disconnect()
+        if @primary.disconnect
+          @outPorts[res].disconnect()
 
       @primary =
         value: null
