@@ -1,7 +1,7 @@
 {
   "name": "noflo-math",
   "description": "Mathematical components for NoFlo",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": {
     "name": "Henri Bergius",
     "email": "henri.bergius@iki.fi"
@@ -23,6 +23,7 @@
       "Subtract": "components/Subtract.coffee",
       "Multiply": "components/Multiply.coffee",
       "Divide": "components/Divide.coffee",
+      "Floor": "components/Floor.coffee",
       "CalculateAngle": "components/CalculateAngle.coffee",
       "CalculateDistance": "components/CalculateDistance.coffee",
       "Compare": "components/Compare.coffee",
