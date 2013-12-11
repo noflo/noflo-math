@@ -1,5 +1,5 @@
 noflo = require 'noflo'
-if typeof process is 'object' and process.title is 'node'
+unless noflo.isBrowser()
   chai = require 'chai' unless chai
   Divide = require '../components/Divide.coffee'
 else
