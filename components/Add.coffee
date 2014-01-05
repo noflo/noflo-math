@@ -6,6 +6,6 @@ class Add extends MathComponent
     super 'augend', 'addend', 'sum'
 
   calculate: (augend, addend) ->
-    augend + addend
+    Number(augend) + Number(addend)
 
 exports.getComponent = -> new Add
