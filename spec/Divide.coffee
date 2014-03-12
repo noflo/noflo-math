@@ -24,7 +24,7 @@ describe 'Divide component', ->
       chai.expect(c.primary).to.be.an 'object'
       chai.expect(c.primary.value).to.be.a 'null'
       chai.expect(c.secondary).to.be.a 'null'
-    it 'should calculate 2 + 5', (done) ->
+    it 'should calculate 5 / 2', (done) ->
       quotient.once 'data', (res) ->
         chai.expect(res).to.equal 2.5
         done()
