@@ -5,6 +5,6 @@ class Divide extends MathComponent
     super 'dividend', 'divisor', 'remainder'
 
   calculate: (dividend, divisor) ->
-    dividend % divisor
+    return dividend % divisor
 
 exports.getComponent = -> new Divide

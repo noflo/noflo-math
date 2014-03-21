@@ -24,9 +24,15 @@ describe 'Modulo component', ->
       chai.expect(c.primary).to.be.an 'object'
       chai.expect(c.primary.value).to.be.a 'null'
       chai.expect(c.secondary).to.be.a 'null'
-    it 'should calculate 5 / 2', (done) ->
+    it 'should calculate 5 / 2 = 1', (done) ->
       remainder.once 'data', (res) ->
         chai.expect(res).to.equal 1
         done()
       dividend.send 5
+      divisor.send 2
+    it 'should calculate 10 / 2 = 0', (done) ->
+      remainder.once 'data', (res) ->
+        chai.expect(res).to.equal 0
+        done()
+      dividend.send 10
       divisor.send 2
