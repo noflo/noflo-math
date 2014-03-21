@@ -27,7 +27,8 @@
       "CalculateAngle": "components/CalculateAngle.coffee",
       "CalculateDistance": "components/CalculateDistance.coffee",
       "Compare": "components/Compare.coffee",
-      "CountSum": "components/CountSum.coffee"
+      "CountSum": "components/CountSum.coffee",
+      "Modulo": "components/Modulo.coffee"
     }
   },
   "dependencies": {
