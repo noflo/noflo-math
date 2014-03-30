@@ -11,6 +11,7 @@
   },
   "scripts": [
     "components/Add.coffee",
+    "components/Ceil.coffee",
     "components/Subtract.coffee",
     "components/Multiply.coffee",
     "components/Divide.coffee",
@@ -29,6 +30,7 @@
     "icon": "plus-circle",
     "components": {
       "Add": "components/Add.coffee",
+      "Ceil": "components/Ceil.coffee",
       "Subtract": "components/Subtract.coffee",
       "Multiply": "components/Multiply.coffee",
       "Divide": "components/Divide.coffee",
