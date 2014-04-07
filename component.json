@@ -19,6 +19,7 @@
     "components/CalculateDistance.coffee",
     "components/Compare.coffee",
     "components/CountSum.coffee",
+    "components/Random.coffee",
     "lib/MathComponent.coffee",
     "index.js"
   ],
@@ -36,7 +37,8 @@
       "CalculateAngle": "components/CalculateAngle.coffee",
       "CalculateDistance": "components/CalculateDistance.coffee",
       "Compare": "components/Compare.coffee",
-      "CountSum": "components/CountSum.coffee"
+      "CountSum": "components/CountSum.coffee",
+      "Random": "components/Random.coffee"
     }
   }
 }
