@@ -20,14 +20,14 @@
     "icon": "plus-circle",
     "components": {
       "Add": "components/Add.coffee",
-      "Subtract": "components/Subtract.coffee",
-      "Multiply": "components/Multiply.coffee",
-      "Divide": "components/Divide.coffee",
-      "Floor": "components/Floor.coffee",
       "CalculateAngle": "components/CalculateAngle.coffee",
       "CalculateDistance": "components/CalculateDistance.coffee",
       "Compare": "components/Compare.coffee",
-      "CountSum": "components/CountSum.coffee"
+      "CountSum": "components/CountSum.coffee",
+      "Divide": "components/Divide.coffee",
+      "Floor": "components/Floor.coffee",
+      "Multiply": "components/Multiply.coffee",
+      "Subtract": "components/Subtract.coffee"
     }
   },
   "dependencies": {
@@ -46,7 +46,8 @@
     "grunt-contrib-watch": "~0.3.1",
     "component-json": "git://github.com/CamShaft/component-json.git",
     "grunt-combine": "~0.8.3",
-    "grunt-component": "~0.1.2"
+    "grunt-component": "~0.1.2",
+    "grunt-noflo-manifest": "^0.1.2"
   },
   "keywords": [],
   "scripts": {

@@ -4,8 +4,7 @@
   "author": "Henri Bergius <henri.bergius@iki.fi>",
   "repo": "noflo/noflo-math",
   "version": "0.0.1",
-  "keywords": [
-  ],
+  "keywords": [],
   "dependencies": {
     "noflo/noflo": "*"
   },
@@ -29,14 +28,14 @@
     "icon": "plus-circle",
     "components": {
       "Add": "components/Add.coffee",
-      "Subtract": "components/Subtract.coffee",
-      "Multiply": "components/Multiply.coffee",
-      "Divide": "components/Divide.coffee",
-      "Floor": "components/Floor.coffee",
       "CalculateAngle": "components/CalculateAngle.coffee",
       "CalculateDistance": "components/CalculateDistance.coffee",
       "Compare": "components/Compare.coffee",
-      "CountSum": "components/CountSum.coffee"
+      "CountSum": "components/CountSum.coffee",
+      "Divide": "components/Divide.coffee",
+      "Floor": "components/Floor.coffee",
+      "Multiply": "components/Multiply.coffee",
+      "Subtract": "components/Subtract.coffee"
     }
   }
 }
