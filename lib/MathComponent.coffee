@@ -19,10 +19,12 @@ class MathComponent extends noflo.Component
     calculate = =>
       for group in @primary.group
         @outPorts[res].beginGroup group
-      @outPorts[res].send @calculate @primary.value, @secondary
+      if @outPorts[res].isAttached()
+        @outPorts[res].send @calculate @primary.value, @secondary
       for group in @primary.group
         @outPorts[res].endGroup()
-      @outPorts[res].disconnect() if @primary.disconnect
+      if @outPorts[res].isConnected() and @primary.disconnect
+        @outPorts[res].disconnect()
 
     @inPorts[primary].on 'begingroup', (group) =>
       @groups.push group
