@@ -27,7 +27,8 @@
       "Divide": "components/Divide.coffee",
       "Floor": "components/Floor.coffee",
       "Multiply": "components/Multiply.coffee",
-      "Subtract": "components/Subtract.coffee"
+      "Subtract": "components/Subtract.coffee",
+      "Modulo": "components/Modulo.coffee"
     }
   },
   "dependencies": {
