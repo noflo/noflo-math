@@ -5,7 +5,7 @@ class Floor extends noflo.Component
     @inPorts =
       in: new noflo.Port 'number'
     @outPorts =
-      out: new noflo.Port 'integer'
+      out: new noflo.Port 'int'
 
     @inPorts.in.on 'begingroup', (group) =>
       @outPorts.out.beginGroup group
