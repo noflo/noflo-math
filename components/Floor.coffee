@@ -1,6 +1,8 @@
 noflo = require 'noflo'
 
 class Floor extends noflo.Component
+  icon: 'arrow-down'
+  description: 'Round a number down'
   constructor: ->
     @inPorts =
       in: new noflo.Port 'number'

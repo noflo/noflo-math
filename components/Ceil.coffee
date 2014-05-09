@@ -1,11 +1,13 @@
 noflo = require 'noflo'
 
 class Ceil extends noflo.Component
+  icon: 'arrow-up'
+  description: 'Round a number up'
   constructor: ->
     @inPorts =
       in: new noflo.Port 'number'
     @outPorts =
-      out: new noflo.Port 'integer'
+      out: new noflo.Port 'int'
 
     @inPorts.in.on 'begingroup', (group) =>
       return unless @outPorts.out.isAttached()

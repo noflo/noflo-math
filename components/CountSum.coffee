@@ -1,6 +1,7 @@
 noflo = require 'noflo'
 
 class CountSum extends noflo.Component
+  description: 'Sum numbers coming from multiple inputs together'
   constructor: ->
     @portCounts = {}
 
