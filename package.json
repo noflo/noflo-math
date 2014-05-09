@@ -29,6 +29,7 @@
       "Floor": "components/Floor.coffee",
       "Modulo": "components/Modulo.coffee",
       "Multiply": "components/Multiply.coffee",
+      "Random": "components/Random.coffee",
       "Subtract": "components/Subtract.coffee"
     }
   },
