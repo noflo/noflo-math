@@ -10,6 +10,7 @@
   },
   "scripts": [
     "components/Add.coffee",
+    "components/Ceil.coffee",
     "components/Subtract.coffee",
     "components/Multiply.coffee",
     "components/Divide.coffee",
@@ -29,6 +30,7 @@
     "icon": "plus-circle",
     "components": {
       "Add": "components/Add.coffee",
+      "Ceil": "components/Ceil.coffee",
       "CalculateAngle": "components/CalculateAngle.coffee",
       "CalculateDistance": "components/CalculateDistance.coffee",
       "Compare": "components/Compare.coffee",
