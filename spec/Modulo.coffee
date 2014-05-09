@@ -1,9 +1,9 @@
 noflo = require 'noflo'
 unless noflo.isBrowser()
   chai = require 'chai' unless chai
-  Divide = require '../components/Modulo.coffee'
+  Modulo = require '../components/Modulo.coffee'
 else
-  Divide = require 'noflo-math/components/Modulo.js'
+  Modulo = require 'noflo-math/components/Modulo.js'
 
 describe 'Modulo component', ->
   c = null
@@ -11,7 +11,7 @@ describe 'Modulo component', ->
   divisor = null
   remainder = null
   beforeEach ->
-    c = Divide.getComponent()
+    c = Modulo.getComponent()
     dividend = noflo.internalSocket.createSocket()
     divisor = noflo.internalSocket.createSocket()
     remainder = noflo.internalSocket.createSocket()
