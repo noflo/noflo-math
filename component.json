@@ -9,6 +9,7 @@
     "noflo/noflo": "*"
   },
   "scripts": [
+    "components/Accumulate.coffee",
     "components/Add.coffee",
     "components/Ceil.coffee",
     "components/Subtract.coffee",
@@ -30,6 +31,7 @@
   "noflo": {
     "icon": "plus-circle",
     "components": {
+      "Accumulate": "components/Accumulate.coffee",
       "Add": "components/Add.coffee",
       "CalculateAngle": "components/CalculateAngle.coffee",
       "CalculateDistance": "components/CalculateDistance.coffee",
