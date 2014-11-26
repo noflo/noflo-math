@@ -23,6 +23,7 @@
     "components/Modulo.coffee",
     "components/Random.coffee",
     "components/RangedRandomInt.coffee",
+    "components/SendNumber.coffee",
     "lib/MathComponent.coffee",
     "index.js"
   ],
@@ -45,6 +46,7 @@
       "Multiply": "components/Multiply.coffee",
       "Random": "components/Random.coffee",
       "RangedRandomInt": "components/RangedRandomInt.coffee",
+      "SendNumber": "components/SendNumber.coffee",
       "Subtract": "components/Subtract.coffee"
     }
   }
