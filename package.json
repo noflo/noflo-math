@@ -28,10 +28,12 @@
       "CountSum": "components/CountSum.coffee",
       "Divide": "components/Divide.coffee",
       "Floor": "components/Floor.coffee",
+      "MapRange": "components/MapRange.coffee",
       "Modulo": "components/Modulo.coffee",
       "Multiply": "components/Multiply.coffee",
       "Random": "components/Random.coffee",
       "RangedRandomInt": "components/RangedRandomInt.coffee",
+      "SendNumber": "components/SendNumber.coffee",
       "Subtract": "components/Subtract.coffee"
     }
   },
