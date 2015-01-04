@@ -20,8 +20,11 @@
     "components/CalculateDistance.coffee",
     "components/Compare.coffee",
     "components/CountSum.coffee",
+    "components/MapRange.coffee",
     "components/Modulo.coffee",
     "components/Random.coffee",
+    "components/RangedRandomInt.coffee",
+    "components/SendNumber.coffee",
     "lib/MathComponent.coffee",
     "index.js"
   ],
@@ -40,9 +43,12 @@
       "CountSum": "components/CountSum.coffee",
       "Divide": "components/Divide.coffee",
       "Floor": "components/Floor.coffee",
+      "MapRange": "components/MapRange.coffee",
       "Modulo": "components/Modulo.coffee",
       "Multiply": "components/Multiply.coffee",
       "Random": "components/Random.coffee",
+      "RangedRandomInt": "components/RangedRandomInt.coffee",
+      "SendNumber": "components/SendNumber.coffee",
       "Subtract": "components/Subtract.coffee"
     }
   }
