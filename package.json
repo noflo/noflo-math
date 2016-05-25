@@ -36,7 +36,7 @@
     "noflo": "~0.5.22"
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
+    "grunt": "^1.0.1",
     "coffee-script": "^1.10.0",
     "grunt-contrib-coffee": "^0.6.7",
     "grunt-coffeelint": "^0.0.15",
@@ -49,7 +49,9 @@
     "grunt-noflo-manifest": "^0.1.11",
     "grunt-noflo-browser": "^0.1.11"
   },
-  "keywords": ["noflo"],
+  "keywords": [
+    "noflo"
+  ],
   "scripts": {
     "test": "grunt test"
   }
