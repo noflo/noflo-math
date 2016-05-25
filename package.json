@@ -10,12 +10,7 @@
     "type": "git",
     "url": "git://github.com/noflo/noflo-math.git"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "undefined/blob/master/LICENSE-MIT"
-    }
-  ],
+  "license": "MIT",
   "noflo": {
     "icon": "plus-circle",
     "components": {
@@ -54,7 +49,7 @@
     "grunt-noflo-manifest": "0.1.11",
     "grunt-noflo-browser": "0.1.11"
   },
-  "keywords": [],
+  "keywords": ["noflo"],
   "scripts": {
     "test": "grunt test"
   }
