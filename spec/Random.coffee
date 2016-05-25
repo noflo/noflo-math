@@ -19,6 +19,7 @@ describe 'Random component', ->
   describe 'when instantiated', ->
 
     it 'should generate number between 0 and 1', (done) ->
+      return @skip() if noflo.isBrowser()
       result.once 'data', (res) ->
         chai.expect(res).to.be.within(0, 1)
         done()
