@@ -3,7 +3,7 @@
   "description": "Mathematical components for NoFlo",
   "author": "Henri Bergius <henri.bergius@iki.fi>",
   "repo": "noflo/noflo-math",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "keywords": [],
   "dependencies": {
     "noflo/noflo": "*"
