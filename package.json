@@ -33,7 +33,7 @@
     }
   },
   "dependencies": {
-    "noflo": "0.x >= 0.5",
+    "noflo": "0.x >= 0.5"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
