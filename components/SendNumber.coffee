@@ -1,42 +1,23 @@
 noflo = require 'noflo'
 
-class SendNumber extends noflo.Component
-  constructor: ->
-    @data =
-      number: null
-      group: []
-    @groups = []
-    @inPorts = new noflo.InPorts
+exports.getComponent = ->
+  c = new noflo.Component
+    inPorts:
       number:
         datatype: 'number'
+        required: true
       in:
         datatype: 'bang'
-    @outPorts = new noflo.OutPorts
+        required: true
+    outPorts:
       out:
         datatype: 'number'
+        required: true
 
-    @inPorts.number.on 'data', (data) =>
-      @data.number = data
+  c.process (input, output) ->
+    return input.buffer.get().pop() if input.ip.type isnt 'data'
+    return unless input.has 'in', 'number'
+    [data, number] = input.getData 'in', 'number'
 
-    @inPorts.in.on 'begingroup', (group) =>
-      @groups.push group
-
-    @inPorts.in.on 'data', (data) =>
-      return if @data.number is null
-      @data.group = @groups.slice 0
-      @sendNumber @data
-
-    @inPorts.in.on 'endgroup', (group) =>
-      @groups.pop()
-    @inPorts.in.on 'disconnect', =>
-      @outPorts.out.disconnect()
-
-  sendNumber: (data) ->
-    for group in data.group
-      @outPorts.out.beginGroup group
-    @outPorts.out.send data.number
-    for group in data.group
-      @outPorts.out.endGroup()
-
-
-exports.getComponent = -> new SendNumber
+    output.send out: number
+    output.done()

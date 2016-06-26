@@ -6,8 +6,10 @@ exports.getComponent = ->
     inPorts:
       augend:
         datatype: 'all'
+        required: true
       addend:
         datatype: 'all'
+        required: true
     outPorts:
       sum:
         datatype: 'all'

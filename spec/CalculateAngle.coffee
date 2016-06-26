@@ -1,29 +1,37 @@
 noflo = require 'noflo'
+
 unless noflo.isBrowser()
-  chai = require 'chai' unless chai
-  CalculateAngle = require '../components/CalculateAngle.coffee'
+  chai = require 'chai'
+  path = require 'path'
+  baseDir = path.resolve __dirname, '../'
 else
-  CalculateAngle = require 'noflo-math/components/CalculateAngle.js'
+  baseDir = 'noflo-math'
 
 describe 'CalculateAngle component', ->
   c = null
   origin = null
   destination = null
   angle = null
+
+  before (done) ->
+    @timeout 4000
+    loader = new noflo.ComponentLoader baseDir
+    loader.load 'math/CalculateAngle', (err, instance) ->
+      return done err if err
+      c = instance
+      done()
+
   beforeEach ->
-    c = CalculateAngle.getComponent()
-    origin = noflo.internalSocket.createSocket()
     destination = noflo.internalSocket.createSocket()
     angle = noflo.internalSocket.createSocket()
+    origin = noflo.internalSocket.createSocket()
     c.inPorts.origin.attach origin
     c.inPorts.destination.attach destination
     c.outPorts.angle.attach angle
 
-  describe 'when instantiated', ->
-    it 'should not hold values', ->
-      chai.expect(c.primary).to.be.an 'object'
-      chai.expect(c.primary.value).to.be.a 'null'
-      chai.expect(c.secondary).to.be.a 'null'
+  afterEach ->
+    c.outPorts.angle.detach angle
+
   describe 'on calculating', ->
     it 'should return correct angle (135)', (done) ->
       angle.on 'data', (data) ->

@@ -1,17 +1,27 @@
 noflo = require 'noflo'
+
 unless noflo.isBrowser()
-  chai = require 'chai' unless chai
-  Modulo = require '../components/Modulo.coffee'
+  chai = require 'chai'
+  path = require 'path'
+  baseDir = path.resolve __dirname, '../'
 else
-  Modulo = require 'noflo-math/components/Modulo.js'
+  baseDir = 'noflo-math'
 
 describe 'Modulo component', ->
   c = null
   dividend = null
   divisor = null
   remainder = null
+
+  before (done) ->
+    @timeout 4000
+    loader = new noflo.ComponentLoader baseDir
+    loader.load 'math/Modulo', (err, instance) ->
+      return done err if err
+      c = instance
+      done()
+
   beforeEach ->
-    c = Modulo.getComponent()
     dividend = noflo.internalSocket.createSocket()
     divisor = noflo.internalSocket.createSocket()
     remainder = noflo.internalSocket.createSocket()
@@ -20,10 +30,6 @@ describe 'Modulo component', ->
     c.outPorts.remainder.attach remainder
 
   describe 'when instantiated', ->
-    it 'should not hold values', ->
-      chai.expect(c.primary).to.be.an 'object'
-      chai.expect(c.primary.value).to.be.a 'null'
-      chai.expect(c.secondary).to.be.a 'null'
     it 'should calculate 5 / 2 = 1', (done) ->
       remainder.once 'data', (res) ->
         chai.expect(res).to.equal 1

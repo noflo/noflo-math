@@ -1,11 +1,22 @@
-{MathComponent} = require '../lib/MathComponent'
+noflo = require 'noflo'
 
-class Multiply extends MathComponent
-  icon: 'asterisk'
-  constructor: ->
-    super 'multiplicand', 'multiplier', 'product'
+exports.getComponent = ->
+  c = new noflo.Component
+    icon: 'asterisk'
+    inPorts:
+      multiplicand:
+        datatype: 'all'
+        required: true
+      multiplier:
+        datatype: 'all'
+        required: true
+    outPorts:
+      product:
+        datatype: 'all'
+        required: true
 
-  calculate: (multiplicand, multiplier) ->
-    multiplicand * multiplier
-
-exports.getComponent = -> new Multiply
+  c.process (input, output) ->
+    return input.buffer.get().pop() if input.ip.type isnt 'data'
+    return unless input.has 'multiplicand', 'multiplier'
+    [multiplicand, multiplier] = input.getData 'multiplicand', 'multiplier'
+    output.sendDone product: multiplicand * multiplier
