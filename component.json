@@ -15,6 +15,7 @@
     "components/Subtract.coffee",
     "components/Multiply.coffee",
     "components/Divide.coffee",
+    "components/Exponentiate.coffee"
     "components/Floor.coffee",
     "components/CalculateAngle.coffee",
     "components/CalculateDistance.coffee",
@@ -26,7 +27,7 @@
     "components/RangedRandomInt.coffee",
     "components/SendNumber.coffee",
     "lib/MathComponent.coffee",
-    "index.js"
+    "index.js",
   ],
   "json": [
     "component.json"
@@ -42,6 +43,7 @@
       "Compare": "components/Compare.coffee",
       "CountSum": "components/CountSum.coffee",
       "Divide": "components/Divide.coffee",
+      "Exponentiate": "components/Exponentiate.coffee",
       "Floor": "components/Floor.coffee",
       "MapRange": "components/MapRange.coffee",
       "Modulo": "components/Modulo.coffee",
