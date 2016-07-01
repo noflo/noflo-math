@@ -25,7 +25,6 @@
     "components/Random.coffee",
     "components/RangedRandomInt.coffee",
     "components/SendNumber.coffee",
-    "lib/MathComponent.coffee",
     "index.js"
   ],
   "json": [
