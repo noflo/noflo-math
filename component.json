@@ -15,7 +15,6 @@
     "components/Subtract.coffee",
     "components/Multiply.coffee",
     "components/Divide.coffee",
-    "components/Exponentiate.coffee"
     "components/Floor.coffee",
     "components/CalculateAngle.coffee",
     "components/CalculateDistance.coffee",
@@ -28,6 +27,7 @@
     "components/SendNumber.coffee",
     "lib/MathComponent.coffee",
     "index.js",
+    "components/Exponentiate.coffee"
   ],
   "json": [
     "component.json"
