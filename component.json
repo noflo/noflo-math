@@ -24,9 +24,7 @@
     "components/Modulo.coffee",
     "components/Random.coffee",
     "components/RangedRandomInt.coffee",
-    "components/SendNumber.coffee",
-    "lib/MathComponent.coffee",
-    "index.js"
+    "components/SendNumber.coffee"
   ],
   "json": [
     "component.json"

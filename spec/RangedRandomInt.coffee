@@ -1,9 +1,11 @@
 noflo = require 'noflo'
+
 unless noflo.isBrowser()
-  chai = require 'chai' unless chai
-  Random = require '../components/RangedRandomInt.coffee'
+  chai = require 'chai'
+  path = require 'path'
+  baseDir = path.resolve __dirname, '../'
 else
-  Random = require 'noflo-math/components/RangedRandomInt.js'
+  baseDir = 'noflo-math'
 
 describe 'RangedRandomInt component', ->
   c = null
@@ -11,8 +13,16 @@ describe 'RangedRandomInt component', ->
   lower = null
   upper = null
   result = null
+
+  before (done) ->
+    @timeout 4000
+    loader = new noflo.ComponentLoader baseDir
+    loader.load 'math/RangedRandomInt', (err, instance) ->
+      return done err if err
+      c = instance
+      done()
+
   beforeEach ->
-    c = Random.getComponent()
     bang = noflo.internalSocket.createSocket()
     lower = noflo.internalSocket.createSocket()
     upper = noflo.internalSocket.createSocket()
@@ -23,7 +33,6 @@ describe 'RangedRandomInt component', ->
     c.outPorts.out.attach result
 
   describe 'when instantiated', ->
-
     it 'should generate number between lower and upper', (done) ->
       result.once 'data', (res) ->
         chai.expect(res).to.be.within(1, 6)

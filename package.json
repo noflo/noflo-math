@@ -10,6 +10,12 @@
     "type": "git",
     "url": "git://github.com/noflo/noflo-math.git"
   },
+  "contributors": [
+    {
+      "name": "James",
+      "email": "aretecode@gmail.com"
+    }
+  ],
   "license": "MIT",
   "noflo": {
     "icon": "plus-circle",
@@ -33,7 +39,7 @@
     }
   },
   "dependencies": {
-    "noflo": "0.x >= 0.5"
+    "noflo": "git+https://github.com/aretecode/noflo-built.git#experiment"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

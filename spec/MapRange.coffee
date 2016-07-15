@@ -1,9 +1,11 @@
 noflo = require 'noflo'
+
 unless noflo.isBrowser()
-  chai = require 'chai' unless chai
-  MapRange = require '../components/MapRange.coffee'
+  chai = require 'chai'
+  path = require 'path'
+  baseDir = path.resolve __dirname, '../'
 else
-  MapRange = require 'noflo-math/components/MapRange.js'
+  baseDir = 'noflo-math'
 
 describe 'MapRange component', ->
   c = null
@@ -13,8 +15,16 @@ describe 'MapRange component', ->
   out_lower = null
   out_upper = null
   result = null
+
+  before (done) ->
+    @timeout 4000
+    loader = new noflo.ComponentLoader baseDir
+    loader.load 'math/MapRange', (err, instance) ->
+      return done err if err
+      c = instance
+      done()
+
   beforeEach ->
-    c = MapRange.getComponent()
     input = noflo.internalSocket.createSocket()
     in_lower = noflo.internalSocket.createSocket()
     in_upper = noflo.internalSocket.createSocket()
@@ -29,7 +39,6 @@ describe 'MapRange component', ->
     c.outPorts.out.attach result
 
   describe 'when instantiated', ->
-
     it 'should map number between lower and upper', (done) ->
       result.once 'data', (res) ->
         chai.expect(res).to.equal 50
@@ -59,5 +68,3 @@ describe 'MapRange component', ->
       out_lower.send 100
       out_upper.send 0
       input.send 5
-
-
