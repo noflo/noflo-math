@@ -39,7 +39,7 @@
     }
   },
   "dependencies": {
-    "noflo": "git+https://github.com/aretecode/noflo-built.git#experiment",
+    "noflo": "git+https://github.com/aretecode/noflo-built.git#experiment"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
