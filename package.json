@@ -43,7 +43,7 @@
     "chai": "^3.5.0",
     "mocha": "^2.5.3",
     "grunt-mocha-phantomjs": "^3.0.0",
-    "grunt-mocha-test": "^0.12.7",
+    "grunt-mocha-test": "^0.13.0",
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-noflo-manifest": "^0.1.11",
