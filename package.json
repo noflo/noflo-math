@@ -22,6 +22,7 @@
       "Compare": "components/Compare.coffee",
       "CountSum": "components/CountSum.coffee",
       "Divide": "components/Divide.coffee",
+      "Exponentiate": "components/Exponentiate.coffee",
       "Floor": "components/Floor.coffee",
       "MapRange": "components/MapRange.coffee",
       "Modulo": "components/Modulo.coffee",
