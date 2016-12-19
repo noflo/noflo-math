@@ -1,7 +1,7 @@
 {
   "name": "noflo-math",
   "description": "Mathematical components for NoFlo",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": {
     "name": "Henri Bergius",
     "email": "henri.bergius@iki.fi"
