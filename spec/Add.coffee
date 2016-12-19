@@ -1,23 +1,33 @@
 noflo = require 'noflo'
 unless noflo.isBrowser()
-  chai = require 'chai' unless chai
-  Add = require '../components/Add.coffee'
+  chai = require 'chai'
+  path = require 'path'
+  baseDir = path.resolve __dirname, '../'
 else
-  Add = require 'noflo-math/components/Add.js'
+  baseDir = 'noflo-math'
 
 describe 'Add component', ->
   c = null
   augend = null
   addend = null
   sum = null
+  before (done) ->
+    @timeout 4000
+    loader = new noflo.ComponentLoader baseDir
+    loader.load 'math/Add', (err, instance) ->
+      return done err if err
+      c = instance
+      augend = noflo.internalSocket.createSocket()
+      addend = noflo.internalSocket.createSocket()
+      c.inPorts.augend.attach augend
+      c.inPorts.addend.attach addend
+      done()
   beforeEach ->
-    c = Add.getComponent()
-    augend = noflo.internalSocket.createSocket()
-    addend = noflo.internalSocket.createSocket()
     sum = noflo.internalSocket.createSocket()
-    c.inPorts.augend.attach augend
-    c.inPorts.addend.attach addend
     c.outPorts.sum.attach sum
+  afterEach ->
+    c.outPorts.sum.detach sum
+    sum = null
 
   describe 'when instantiated', ->
     it 'should not hold values', ->

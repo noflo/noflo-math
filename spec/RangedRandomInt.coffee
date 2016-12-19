@@ -1,9 +1,10 @@
 noflo = require 'noflo'
 unless noflo.isBrowser()
-  chai = require 'chai' unless chai
-  Random = require '../components/RangedRandomInt.coffee'
+  chai = require 'chai'
+  path = require 'path'
+  baseDir = path.resolve __dirname, '../'
 else
-  Random = require 'noflo-math/components/RangedRandomInt.js'
+  baseDir = 'noflo-math'
 
 describe 'RangedRandomInt component', ->
   c = null
@@ -11,16 +12,23 @@ describe 'RangedRandomInt component', ->
   lower = null
   upper = null
   result = null
-  beforeEach ->
-    c = Random.getComponent()
-    bang = noflo.internalSocket.createSocket()
-    lower = noflo.internalSocket.createSocket()
-    upper = noflo.internalSocket.createSocket()
-    result = noflo.internalSocket.createSocket()
-    c.inPorts.in.attach bang
-    c.inPorts.lower.attach lower
-    c.inPorts.upper.attach upper
-    c.outPorts.out.attach result
+  loader = null
+  before ->
+    loader = new noflo.ComponentLoader baseDir
+  beforeEach (done) ->
+    @timeout 4000
+    loader.load 'math/RangedRandomInt', (err, instance) ->
+      return done err if err
+      c = instance
+      bang = noflo.internalSocket.createSocket()
+      lower = noflo.internalSocket.createSocket()
+      upper = noflo.internalSocket.createSocket()
+      result = noflo.internalSocket.createSocket()
+      c.inPorts.in.attach bang
+      c.inPorts.lower.attach lower
+      c.inPorts.upper.attach upper
+      c.outPorts.out.attach result
+      done()
 
   describe 'when instantiated', ->
 

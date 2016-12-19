@@ -1,9 +1,10 @@
 noflo = require 'noflo'
 unless noflo.isBrowser()
-  chai = require 'chai' unless chai
-  Accumulate = require '../components/Accumulate.coffee'
+  chai = require 'chai'
+  path = require 'path'
+  baseDir = path.resolve __dirname, '../'
 else
-  Accumulate = require 'noflo-math/components/Accumulate.js'
+  baseDir = 'noflo-math'
 
 describe 'Accumulate component', ->
   c = null
@@ -11,16 +12,23 @@ describe 'Accumulate component', ->
   reset = null
   emitreset = null
   cout = null
-  beforeEach ->
-    c = Accumulate.getComponent()
-    cin = noflo.internalSocket.createSocket()
-    reset = noflo.internalSocket.createSocket()
-    emitreset = noflo.internalSocket.createSocket()
-    cout = noflo.internalSocket.createSocket()
-    c.inPorts.in.attach cin
-    c.inPorts.reset.attach reset
-    c.inPorts.emitreset.attach emitreset
-    c.outPorts.out.attach cout
+  loader = null
+  before ->
+    loader = new noflo.ComponentLoader baseDir
+  beforeEach (done) ->
+    @timeout 4000
+    loader.load 'math/Accumulate', (err, instance) ->
+      return done err if err
+      c = instance
+      cin = noflo.internalSocket.createSocket()
+      reset = noflo.internalSocket.createSocket()
+      emitreset = noflo.internalSocket.createSocket()
+      cout = noflo.internalSocket.createSocket()
+      c.inPorts.in.attach cin
+      c.inPorts.reset.attach reset
+      c.inPorts.emitreset.attach emitreset
+      c.outPorts.out.attach cout
+      done()
 
   describe 'when instantiated', ->
     it 'should accumulate number', (done) ->

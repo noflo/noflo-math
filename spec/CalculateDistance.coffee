@@ -1,23 +1,32 @@
 noflo = require 'noflo'
 unless noflo.isBrowser()
-  chai = require 'chai' unless chai
-  CalculateDistance = require '../components/CalculateDistance.coffee'
+  chai = require 'chai'
+  path = require 'path'
+  baseDir = path.resolve __dirname, '../'
 else
-  CalculateDistance = require 'noflo-math/components/CalculateDistance.js'
+  baseDir = 'noflo-math'
 
 describe 'CalculateDistance component', ->
   c = null
   origin = null
   destination = null
   distance = null
-  beforeEach ->
-    c = CalculateDistance.getComponent()
-    origin = noflo.internalSocket.createSocket()
-    destination = noflo.internalSocket.createSocket()
-    distance = noflo.internalSocket.createSocket()
-    c.inPorts.origin.attach origin
-    c.inPorts.destination.attach destination
-    c.outPorts.distance.attach distance
+  loader = null
+  before (done) ->
+    loader = new noflo.ComponentLoader baseDir
+    done()
+  beforeEach (done) ->
+    @timeout 4000
+    loader.load 'math/CalculateDistance', (err, instance) ->
+      return done err if err
+      c = instance
+      origin = noflo.internalSocket.createSocket()
+      destination = noflo.internalSocket.createSocket()
+      distance = noflo.internalSocket.createSocket()
+      c.inPorts.origin.attach origin
+      c.inPorts.destination.attach destination
+      c.outPorts.distance.attach distance
+      done()
 
   describe 'when instantiated', ->
     it 'should not hold values', ->

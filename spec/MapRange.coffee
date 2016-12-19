@@ -1,9 +1,10 @@
 noflo = require 'noflo'
 unless noflo.isBrowser()
-  chai = require 'chai' unless chai
-  MapRange = require '../components/MapRange.coffee'
+  chai = require 'chai'
+  path = require 'path'
+  baseDir = path.resolve __dirname, '../'
 else
-  MapRange = require 'noflo-math/components/MapRange.js'
+  baseDir = 'noflo-math'
 
 describe 'MapRange component', ->
   c = null
@@ -13,20 +14,27 @@ describe 'MapRange component', ->
   out_lower = null
   out_upper = null
   result = null
-  beforeEach ->
-    c = MapRange.getComponent()
-    input = noflo.internalSocket.createSocket()
-    in_lower = noflo.internalSocket.createSocket()
-    in_upper = noflo.internalSocket.createSocket()
-    out_lower = noflo.internalSocket.createSocket()
-    out_upper = noflo.internalSocket.createSocket()
-    result = noflo.internalSocket.createSocket()
-    c.inPorts.in.attach input
-    c.inPorts.in_lower.attach in_lower
-    c.inPorts.in_upper.attach in_upper
-    c.inPorts.out_lower.attach out_lower
-    c.inPorts.out_upper.attach out_upper
-    c.outPorts.out.attach result
+  loader = null
+  before ->
+    loader = new noflo.ComponentLoader baseDir
+  beforeEach (done) ->
+    @timeout 4000
+    loader.load 'math/MapRange', (err, instance) ->
+      return done err if err
+      c = instance
+      input = noflo.internalSocket.createSocket()
+      in_lower = noflo.internalSocket.createSocket()
+      in_upper = noflo.internalSocket.createSocket()
+      out_lower = noflo.internalSocket.createSocket()
+      out_upper = noflo.internalSocket.createSocket()
+      result = noflo.internalSocket.createSocket()
+      c.inPorts.in.attach input
+      c.inPorts.in_lower.attach in_lower
+      c.inPorts.in_upper.attach in_upper
+      c.inPorts.out_lower.attach out_lower
+      c.inPorts.out_upper.attach out_upper
+      c.outPorts.out.attach result
+      done()
 
   describe 'when instantiated', ->
 
