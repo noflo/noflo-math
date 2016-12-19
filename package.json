@@ -46,7 +46,7 @@
     "grunt-mocha-test": "^0.13.2",
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-contrib-watch": "^1.0.0",
-    "grunt-noflo-manifest": "^0.1.11",
+    "grunt-noflo-manifest": "^0.1.12",
     "grunt-noflo-browser": "^1.0.1"
   },
   "keywords": [
