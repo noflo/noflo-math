@@ -1,22 +1,34 @@
 noflo = require 'noflo'
 unless noflo.isBrowser()
-  chai = require 'chai' unless chai
-  CountSum = require '../components/CountSum.coffee'
+  chai = require 'chai'
+  path = require 'path'
+  baseDir = path.resolve __dirname, '../'
 else
-  CountSum = require 'noflo-math/components/CountSum.js'
+  baseDir = 'noflo-math'
 
 describe 'CountSum component', ->
   c = null
   first = null
   second = null
   sum = null
-  beforeEach ->
-    c = CountSum.getComponent()
-    first = noflo.internalSocket.createSocket()
-    second = noflo.internalSocket.createSocket()
-    sum = noflo.internalSocket.createSocket()
-    c.inPorts.in.attach first
-    c.outPorts.out.attach sum
+  loader = null
+  before ->
+    loader = new noflo.ComponentLoader baseDir
+  beforeEach (done) ->
+    @timeout 4000
+    loader.load 'math/CountSum', (err, instance) ->
+      return done err if err
+      c = instance
+      first = noflo.internalSocket.createSocket()
+      second = noflo.internalSocket.createSocket()
+      c.inPorts.in.attach first
+      sum = noflo.internalSocket.createSocket()
+      c.outPorts.out.attach sum
+      done()
+  afterEach ->
+    c.outPorts.out.detach sum
+    sum = null
+    c.shutdown()
 
   describe 'with a single connected port', ->
     it 'should forward the same number', (done) ->

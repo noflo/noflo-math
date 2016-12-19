@@ -1,23 +1,33 @@
 noflo = require 'noflo'
 unless noflo.isBrowser()
-  chai = require 'chai' unless chai
-  Exponentiate = require '../components/Exponentiate.coffee'
+  chai = require 'chai'
+  path = require 'path'
+  baseDir = path.resolve __dirname, '../'
 else
-  Exponentiate = require 'noflo-math/components/Exponentiate.js'
+  baseDir = 'noflo-math'
 
 describe 'Exponentiate component', ->
   c = null
   base = null
   exponent = null
   power = null
+  before (done) ->
+    @timeout 4000
+    loader = new noflo.ComponentLoader baseDir
+    loader.load 'math/Exponentiate', (err, instance) ->
+      return done err if err
+      c = instance
+      base = noflo.internalSocket.createSocket()
+      exponent = noflo.internalSocket.createSocket()
+      c.inPorts.base.attach base
+      c.inPorts.exponent.attach exponent
+      done()
   beforeEach ->
-    c = Exponentiate.getComponent()
-    base = noflo.internalSocket.createSocket()
-    exponent = noflo.internalSocket.createSocket()
     power = noflo.internalSocket.createSocket()
-    c.inPorts.base.attach base
-    c.inPorts.exponent.attach exponent
     c.outPorts.power.attach power
+  afterEach ->
+    c.outPorts.power.attach power
+    power = null
 
   describe 'when instantiated', ->
     it 'should not hold values', ->

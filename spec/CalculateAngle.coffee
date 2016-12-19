@@ -1,23 +1,35 @@
 noflo = require 'noflo'
 unless noflo.isBrowser()
-  chai = require 'chai' unless chai
-  CalculateAngle = require '../components/CalculateAngle.coffee'
+  chai = require 'chai'
+  path = require 'path'
+  baseDir = path.resolve __dirname, '../'
 else
-  CalculateAngle = require 'noflo-math/components/CalculateAngle.js'
+  baseDir = 'noflo-math'
 
 describe 'CalculateAngle component', ->
   c = null
   origin = null
   destination = null
   angle = null
-  beforeEach ->
-    c = CalculateAngle.getComponent()
-    origin = noflo.internalSocket.createSocket()
-    destination = noflo.internalSocket.createSocket()
-    angle = noflo.internalSocket.createSocket()
-    c.inPorts.origin.attach origin
-    c.inPorts.destination.attach destination
-    c.outPorts.angle.attach angle
+  loader = null
+  before (done) ->
+    loader = new noflo.ComponentLoader baseDir
+    done()
+  beforeEach (done) ->
+    @timeout 4000
+    loader.load 'math/CalculateAngle', (err, instance) ->
+      return done err if err
+      c = instance
+      origin = noflo.internalSocket.createSocket()
+      destination = noflo.internalSocket.createSocket()
+      c.inPorts.origin.attach origin
+      c.inPorts.destination.attach destination
+      angle = noflo.internalSocket.createSocket()
+      c.outPorts.angle.attach angle
+      done()
+  afterEach ->
+    c.outPorts.angle.detach angle
+    angle = null
 
   describe 'when instantiated', ->
     it 'should not hold values', ->

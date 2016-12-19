@@ -1,20 +1,30 @@
 noflo = require 'noflo'
 unless noflo.isBrowser()
-  chai = require 'chai' unless chai
-  Ceil = require '../components/Ceil.coffee'
+  chai = require 'chai'
+  path = require 'path'
+  baseDir = path.resolve __dirname, '../'
 else
-  Ceil = require 'noflo-math/components/Ceil.js'
+  baseDir = 'noflo-math'
 
 describe 'Ceil component', ->
   c = null
   vin = null
   vout = null
+  before (done) ->
+    @timeout 4000
+    loader = new noflo.ComponentLoader baseDir
+    loader.load 'math/Ceil', (err, instance) ->
+      return done err if err
+      c = instance
+      vin = noflo.internalSocket.createSocket()
+      c.inPorts.in.attach vin
+      done()
   beforeEach ->
-    c = Ceil.getComponent()
-    vin = noflo.internalSocket.createSocket()
     vout = noflo.internalSocket.createSocket()
-    c.inPorts.in.attach vin
     c.outPorts.out.attach vout
+  afterEach ->
+    c.outPorts.out.detach vout
+    vout = null
 
   describe 'when instantiated', ->
     it 'should calculate 5.1 = 6', (done) ->

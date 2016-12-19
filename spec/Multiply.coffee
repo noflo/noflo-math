@@ -1,23 +1,33 @@
 noflo = require 'noflo'
 unless noflo.isBrowser()
-  chai = require 'chai' unless chai
-  Multiply = require '../components/Multiply.coffee'
+  chai = require 'chai'
+  path = require 'path'
+  baseDir = path.resolve __dirname, '../'
 else
-  Multiply = require 'noflo-math/components/Multiply.js'
+  baseDir = 'noflo-math'
 
 describe 'Multiply component', ->
   c = null
   multiplicand = null
   multiplier = null
   product = null
+  before (done) ->
+    @timeout 4000
+    loader = new noflo.ComponentLoader baseDir
+    loader.load 'math/Multiply', (err, instance) ->
+      return done err if err
+      c = instance
+      multiplicand = noflo.internalSocket.createSocket()
+      multiplier = noflo.internalSocket.createSocket()
+      c.inPorts.multiplicand.attach multiplicand
+      c.inPorts.multiplier.attach multiplier
+      done()
   beforeEach ->
-    c = Multiply.getComponent()
-    multiplicand = noflo.internalSocket.createSocket()
-    multiplier = noflo.internalSocket.createSocket()
     product = noflo.internalSocket.createSocket()
-    c.inPorts.multiplicand.attach multiplicand
-    c.inPorts.multiplier.attach multiplier
     c.outPorts.product.attach product
+  afterEach ->
+    c.outPorts.product.attach product
+    product = null
 
   describe 'when instantiated', ->
     it 'should not hold values', ->
