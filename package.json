@@ -39,7 +39,7 @@
     "grunt": "^0.4.5",
     "coffee-script": "^1.10.0",
     "grunt-contrib-coffee": "^1.0.0",
-    "grunt-coffeelint": "^0.0.15",
+    "grunt-coffeelint": "^0.0.16",
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
     "grunt-mocha-phantomjs": "^4.0.0",
