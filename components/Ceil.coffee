@@ -12,7 +12,6 @@ exports.getComponent = ->
         datatype: 'int'
 
   c.process (input, output) ->
-    return input.buffer.get().pop() if input.ip.type isnt 'data'
-    return unless input.has 'in'
+    return unless input.hasData 'in'
     data = input.getData 'in'
     output.sendDone Math.ceil data

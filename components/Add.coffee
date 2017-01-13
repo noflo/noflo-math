@@ -5,17 +5,17 @@ exports.getComponent = ->
     icon: 'plus'
     inPorts:
       augend:
-        datatype: 'all'
+        datatype: 'number'
         required: true
       addend:
-        datatype: 'all'
+        datatype: 'number'
         required: true
     outPorts:
       sum:
-        datatype: 'all'
+        datatype: 'number'
 
   c.process (input, output) ->
-    return input.buffer.get().pop() if input.ip.type isnt 'data'
-    return unless input.has 'augend', 'addend'
+    return unless input.hasData 'augend', 'addend'
     [augend, addend] = input.getData 'augend', 'addend'
-    output.sendDone sum: Number(augend) + Number(addend)
+    output.sendDone
+      sum: Number(augend) + Number(addend)

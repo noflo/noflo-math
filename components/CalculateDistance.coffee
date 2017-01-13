@@ -17,8 +17,7 @@ exports.getComponent = ->
         required: true
 
   c.process (input, output) ->
-    return input.buffer.get().pop() if input.ip.type isnt 'data'
-    return unless input.has 'origin', 'destination'
+    return unless input.hasData 'origin', 'destination'
     [origin, destination] = input.getData 'origin', 'destination'
 
     deltaX = destination.x - origin.x
@@ -26,4 +25,5 @@ exports.getComponent = ->
     origin = null
     destination = null
     distance = Math.sqrt Math.pow(deltaX, 2) + Math.pow(deltaY, 2)
-    output.sendDone distance
+    output.sendDone
+      distance: distance

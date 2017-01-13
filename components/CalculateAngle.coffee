@@ -17,8 +17,7 @@ exports.getComponent = ->
         required: true
 
   c.process (input, output) ->
-    return input.buffer.get().pop() if input.ip.type isnt 'data'
-    return unless input.has 'origin', 'destination'
+    return unless input.hasData 'origin', 'destination'
     [origin, destination] = input.getData 'origin', 'destination'
 
     deltaX = destination.x - origin.x
@@ -27,4 +26,5 @@ exports.getComponent = ->
     destination = null
     angle = (Math.atan2(deltaY, deltaX) * 180 / Math.PI) + 90
     angle = angle + 360 if angle < 0
-    output.sendDone angle
+    output.sendDone
+      angle: angle

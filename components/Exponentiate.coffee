@@ -15,6 +15,5 @@ exports.getComponent = ->
   c.process (input, output) ->
     return unless input.hasData 'base', 'exponent'
     [base, exponent] = input.getData 'base', 'exponent'
-
     output.sendDone
       power: Math.pow base, exponent
