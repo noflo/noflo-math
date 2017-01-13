@@ -35,7 +35,7 @@ exports.getComponent = ->
 
   # On data flow.
   c.process (input, output) ->
-    return unless input.has 'in', (ip) -> ip.type is 'data'
+    return unless input.hasData 'in'
 
     data = input.getData 'in'
     in_lower_data = input.getData 'in_lower'

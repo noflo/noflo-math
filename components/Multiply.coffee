@@ -16,7 +16,6 @@ exports.getComponent = ->
         required: true
 
   c.process (input, output) ->
-    return input.buffer.get().pop() if input.ip.type isnt 'data'
-    return unless input.has 'multiplicand', 'multiplier'
+    return unless input.hasData 'multiplicand', 'multiplier'
     [multiplicand, multiplier] = input.getData 'multiplicand', 'multiplier'
     output.sendDone product: multiplicand * multiplier

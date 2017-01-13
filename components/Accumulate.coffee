@@ -22,7 +22,7 @@ exports.getComponent = () ->
   c.forwardBrackets = {}
 
   c.process (input, output) ->
-    return unless input.has 'in', (ip) -> ip.type is 'data'
+    return unless input.hasData 'in'
 
     buffer = input.buffer.get('in')
     datas = buffer.filter (ip) -> ip.type is 'data'

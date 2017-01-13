@@ -15,7 +15,6 @@ exports.getComponent = ->
         datatype: 'all'
 
   c.process (input, output) ->
-    return input.buffer.get().pop() if input.ip.type isnt 'data'
-    return unless input.has 'minuend', 'subtrahend'
+    return unless input.hasData 'minuend', 'subtrahend'
     [minuend, subtrahend] = input.getData 'minuend', 'subtrahend'
     output.sendDone minuend - subtrahend
