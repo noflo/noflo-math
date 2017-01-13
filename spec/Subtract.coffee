@@ -30,10 +30,6 @@ describe 'Subtract component', ->
     difference = null
 
   describe 'when instantiated', ->
-    it 'should not hold values', ->
-      chai.expect(c.primary).to.be.an 'object'
-      chai.expect(c.primary.value).to.be.a 'null'
-      chai.expect(c.secondary).to.be.a 'null'
     it 'should calculate 2 - 5', (done) ->
       difference.once 'data', (res) ->
         chai.expect(res).to.equal -3
