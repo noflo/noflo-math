@@ -2,33 +2,52 @@ noflo = require 'noflo'
 
 exports.getComponent = () ->
   c = new noflo.Component
-  c.description = 'Accumulate numbers coming from the input port'
+    description: 'Accumulate numbers coming from the input port'
+    inPorts:
+      in:
+        datatype: 'number'
+        description: 'Numbers to accumulate'
+        required: true
+      reset:
+        datatype: 'bang'
+        description: 'Reset accumulation counter'
+      emitreset:
+        datatype: 'boolean'
+        description: 'Whether to emit an output upon reset'
+    outPorts:
+      out:
+        datatype: 'number'
+        required: true
 
-  c.inPorts.add 'in',
-    datatype: 'number'
-    description: 'Numbers to accumulate'
-  c.inPorts.add 'reset',
-    datatype: 'bang'
-    description: 'Reset accumulation counter'
-    process: (event, data) ->
-      return unless event is 'data'
-      c.counter = 0
-      c.outPorts.out.send c.counter
-      c.outPorts.out.disconnect()
-  c.inPorts.add 'emitreset',
-    datatype: 'boolean'
-    description: 'Whether to emit an output upon reset'
-    process: (event, data) ->
-      return unless event is 'data'
-      c.emitReset = data
+  c.forwardBrackets = {}
 
-  c.outPorts.add 'out',
-    datatype: 'number'
+  c.process (input, output) ->
+    return unless input.has 'in', (ip) -> ip.type is 'data'
 
-  c.counter = 0
+    buffer = input.buffer.get('in')
+    datas = buffer.filter (ip) -> ip.type is 'data'
+    close = buffer.filter (ip) -> ip.type is 'closeBracket'
 
-  noflo.helpers.MapComponent c, (data, groups, out) ->
-    c.counter += data
-    out.send c.counter
+    if input.has 'reset'
+      reset = input.get 'reset'
 
-  c
+      emitReset = null
+      if input.has 'emitreset'
+        buf = input.buffer.get('emitreset').filter (ip) -> ip.type is 'data'
+        emitReset = buf[0].data
+        input.buffer.set 'emitreset', []
+
+      input.buffer.set 'in', []
+      if emitReset?
+        return output.sendDone 0
+      return output.done()
+
+    if close.length isnt 0
+      input.buffer.set 'in', []
+      return output.done()
+
+    counter = 0
+    for data in datas
+      counter += data.data
+
+    output.sendDone counter
