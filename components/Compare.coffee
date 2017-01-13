@@ -27,12 +27,11 @@ exports.getComponent = ->
     comparison: 'pass'
     operator: 'pass'
   c.process (input, output) ->
-    return input.buffer.pop() unless input.ip.type is 'data'
-    return unless input.has 'value', 'comparison', (ip) -> ip.type is 'data'
+    return unless input.hasData 'value', 'comparison'
 
     value = input.getData 'value'
     comparison = input.getData 'comparison'
-    operator = input.getData 'operator'
+    operator = input.getData('operator') or '=='
 
     switch operator
       when 'eq', '=='
@@ -48,5 +47,4 @@ exports.getComponent = ->
       when 'le', '<='
         return output.sendDone pass: value if value <= comparison
 
-    return unless output.ports.fail.isAttached()
     output.sendDone fail: value
