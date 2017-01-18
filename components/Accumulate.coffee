@@ -14,6 +14,8 @@ exports.getComponent = () ->
       emitreset:
         datatype: 'boolean'
         description: 'Whether to emit an output upon reset'
+        control: true
+        default: false
     outPorts:
       out:
         datatype: 'number'
@@ -21,33 +23,24 @@ exports.getComponent = () ->
 
   c.forwardBrackets = {}
 
+  c.counter = 0
+  baseShutdown = c.shutdown
+  c.shutdown = ->
+    c.counter = 0
+    do baseShutdown
+
   c.process (input, output) ->
+    if input.hasData 'reset'
+      input.getData 'reset'
+      c.counter = 0
+      emitReset = false
+      emitReset = input.getData('emitreset') if input.hasData 'emitreset'
+      return output.sendDone c.counter if emitReset
+      return output.done()
+
     return unless input.hasData 'in'
 
-    buffer = input.buffer.get('in')
-    datas = buffer.filter (ip) -> ip.type is 'data'
-    close = buffer.filter (ip) -> ip.type is 'closeBracket'
+    data = input.getData 'in'
+    c.counter += data
 
-    if input.has 'reset'
-      reset = input.get 'reset'
-
-      emitReset = null
-      if input.has 'emitreset'
-        buf = input.buffer.get('emitreset').filter (ip) -> ip.type is 'data'
-        emitReset = buf[0].data
-        input.buffer.set 'emitreset', []
-
-      input.buffer.set 'in', []
-      if emitReset?
-        return output.sendDone 0
-      return output.done()
-
-    if close.length isnt 0
-      input.buffer.set 'in', []
-      return output.done()
-
-    counter = 0
-    for data in datas
-      counter += data.data
-
-    output.sendDone counter
+    output.sendDone c.counter
