@@ -30,22 +30,9 @@ describe 'Add component', ->
     sum = null
 
   describe 'when instantiated', ->
-    it 'should not hold values', ->
-      chai.expect(c.primary).to.be.an 'object'
-      chai.expect(c.primary.value).to.be.a 'null'
-      chai.expect(c.secondary).to.be.a 'null'
     it 'should calculate 2 + 5', (done) ->
       sum.once 'data', (res) ->
         chai.expect(res).to.equal 7
         done()
       augend.send 2
       addend.send 5
-    it 'should not hold values after a clear', ->
-      augend.send 4
-      addend.send 2
-      clear = noflo.internalSocket.createSocket()
-      c.inPorts.clear.attach clear
-      clear.send true
-      chai.expect(c.primary).to.be.an 'object'
-      chai.expect(c.primary.value).to.be.a 'null'
-      chai.expect(c.secondary).to.be.a 'null'

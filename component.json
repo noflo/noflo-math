@@ -3,7 +3,7 @@
   "description": "Mathematical components for NoFlo",
   "author": "Henri Bergius <henri.bergius@iki.fi>",
   "repo": "noflo/noflo-math",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "keywords": [],
   "dependencies": {
     "noflo/noflo": "*"
@@ -25,7 +25,6 @@
     "components/Random.coffee",
     "components/RangedRandomInt.coffee",
     "components/SendNumber.coffee",
-    "lib/MathComponent.coffee",
     "index.js",
     "components/Exponentiate.coffee"
   ],

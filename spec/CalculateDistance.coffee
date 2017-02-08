@@ -28,11 +28,6 @@ describe 'CalculateDistance component', ->
       c.outPorts.distance.attach distance
       done()
 
-  describe 'when instantiated', ->
-    it 'should not hold values', ->
-      chai.expect(c.primary).to.be.an 'object'
-      chai.expect(c.primary.value).to.be.a 'null'
-      chai.expect(c.secondary).to.be.a 'null'
   describe 'on calculating', ->
     it 'should return correct distance', (done) ->
       distance.on 'data', (data) ->

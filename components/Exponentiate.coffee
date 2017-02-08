@@ -1,11 +1,19 @@
-{MathComponent} = require '../lib/MathComponent'
+noflo = require 'noflo'
 
-class Exponentiate extends MathComponent
-  icon: 'caret'
-  constructor: ->
-    super 'base', 'exponent', 'power'
+exports.getComponent = ->
+  c = new noflo.Component
+  c.icon = 'caret'
+  c.inPorts.add 'base',
+    datatype: 'number'
+    required: true
+  c.inPorts.add 'exponent',
+    datatype: 'number'
+    required: true
+  c.outPorts.add 'power',
+    datatype: 'number'
 
-  calculate: (base, exponent) ->
-    Math.pow(base, exponent)
-
-exports.getComponent = -> new Exponentiate
+  c.process (input, output) ->
+    return unless input.hasData 'base', 'exponent'
+    [base, exponent] = input.getData 'base', 'exponent'
+    output.sendDone
+      power: Math.pow base, exponent

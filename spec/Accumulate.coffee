@@ -42,6 +42,7 @@ describe 'Accumulate component', ->
       cin.send 2
       cin.send 5
       cin.send 3
+      cin.disconnect()
     it 'should emit 0 when emitreset is set', (done) ->
       emitreset.send true
       emitreset.disconnect()

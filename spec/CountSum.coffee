@@ -37,8 +37,7 @@ describe 'CountSum component', ->
 
       sum.on 'data', (data) ->
         chai.expect(data).to.equal expects.shift()
-      sum.on 'disconnect', ->
-        done()
+        done() unless expects.length
 
       first.send data for data in sends
       first.disconnect()

@@ -49,6 +49,14 @@ module.exports = ->
           require: 'coffee-script/register'
           grep: process.env.TESTS
 
+    # Generate runner.html
+    noflo_browser_mocha:
+      all:
+        options:
+          scripts: ["../browser/<%=pkg.name%>.js"]
+        files:
+          'spec/runner.html': ['spec/*.js']
+
     # BDD tests on browser
     mocha_phantomjs:
       options:
@@ -88,6 +96,7 @@ module.exports = ->
     if target is 'all' or target is 'browser'
       @task.run 'noflo_browser'
       @task.run 'coffee'
+      @task.run 'noflo_browser_mocha'
       @task.run 'mocha_phantomjs'
 
   @registerTask 'default', ['test']

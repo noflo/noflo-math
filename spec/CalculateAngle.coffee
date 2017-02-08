@@ -31,11 +31,6 @@ describe 'CalculateAngle component', ->
     c.outPorts.angle.detach angle
     angle = null
 
-  describe 'when instantiated', ->
-    it 'should not hold values', ->
-      chai.expect(c.primary).to.be.an 'object'
-      chai.expect(c.primary.value).to.be.a 'null'
-      chai.expect(c.secondary).to.be.a 'null'
   describe 'on calculating', ->
     it 'should return correct angle (135)', (done) ->
       angle.on 'data', (data) ->

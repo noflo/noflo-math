@@ -2,33 +2,45 @@ noflo = require 'noflo'
 
 exports.getComponent = () ->
   c = new noflo.Component
-  c.description = 'Accumulate numbers coming from the input port'
+    description: 'Accumulate numbers coming from the input port'
+    inPorts:
+      in:
+        datatype: 'number'
+        description: 'Numbers to accumulate'
+        required: true
+      reset:
+        datatype: 'bang'
+        description: 'Reset accumulation counter'
+      emitreset:
+        datatype: 'boolean'
+        description: 'Whether to emit an output upon reset'
+        control: true
+        default: false
+    outPorts:
+      out:
+        datatype: 'number'
+        required: true
 
-  c.inPorts.add 'in',
-    datatype: 'number'
-    description: 'Numbers to accumulate'
-  c.inPorts.add 'reset',
-    datatype: 'bang'
-    description: 'Reset accumulation counter'
-    process: (event, data) ->
-      return unless event is 'data'
-      c.counter = 0
-      c.outPorts.out.send c.counter
-      c.outPorts.out.disconnect()
-  c.inPorts.add 'emitreset',
-    datatype: 'boolean'
-    description: 'Whether to emit an output upon reset'
-    process: (event, data) ->
-      return unless event is 'data'
-      c.emitReset = data
-
-  c.outPorts.add 'out',
-    datatype: 'number'
+  c.forwardBrackets = {}
 
   c.counter = 0
+  baseShutdown = c.shutdown
+  c.shutdown = ->
+    c.counter = 0
+    do baseShutdown
 
-  noflo.helpers.MapComponent c, (data, groups, out) ->
+  c.process (input, output) ->
+    if input.hasData 'reset'
+      input.getData 'reset'
+      c.counter = 0
+      emitReset = false
+      emitReset = input.getData('emitreset') if input.hasData 'emitreset'
+      return output.sendDone c.counter if emitReset
+      return output.done()
+
+    return unless input.hasData 'in'
+
+    data = input.getData 'in'
     c.counter += data
-    out.send c.counter
 
-  c
+    output.sendDone c.counter
