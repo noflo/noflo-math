@@ -13,9 +13,12 @@ exports.getComponent = ->
 
   c.forwardBrackets = {}
   c.process (input, output, id) ->
-    return unless input.hasStream 'in'
+    indexesWithStream = input.attached('in').filter (idx) ->
+      input.hasStream ['in', idx]
+    return unless indexesWithStream.length
 
-    stream = input.getStream('in').filter (ip) -> ip.type is 'data'
+    connection = ['in', indexesWithStream[0]]
+    stream = input.getStream(connection).filter (ip) -> ip.type is 'data'
 
     sum = 0
     previous = 0

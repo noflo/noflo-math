@@ -34,7 +34,7 @@
     }
   },
   "dependencies": {
-    "noflo": "^0.8.0-beta1"
+    "noflo": "^0.8.0-beta3"
   },
   "devDependencies": {
     "chai": "^3.5.0",

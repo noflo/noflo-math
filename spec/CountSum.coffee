@@ -25,10 +25,10 @@ describe 'CountSum component', ->
       sum = noflo.internalSocket.createSocket()
       c.outPorts.out.attach sum
       done()
-  afterEach ->
+  afterEach (done) ->
     c.outPorts.out.detach sum
     sum = null
-    c.shutdown()
+    c.shutdown done
 
   describe 'with a single connected port', ->
     it 'should forward the same number', (done) ->
