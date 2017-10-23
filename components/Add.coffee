@@ -10,6 +10,7 @@ exports.getComponent = ->
       addend:
         datatype: 'number'
         required: true
+        control: true
     outPorts:
       sum:
         datatype: 'number'

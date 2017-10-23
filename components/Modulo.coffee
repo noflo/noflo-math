@@ -9,6 +9,7 @@ exports.getComponent = ->
       divisor:
         datatype: 'all'
         required: true
+        control: true
     outPorts:
       remainder:
         datatype: 'all'

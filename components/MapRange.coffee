@@ -35,7 +35,7 @@ exports.getComponent = ->
 
   # On data flow.
   c.process (input, output) ->
-    return unless input.hasData 'in'
+    return unless input.hasData 'in', 'in_lower', 'in_upper', 'out_upper', 'out_lower'
 
     data = input.getData 'in'
     in_lower_data = input.getData 'in_lower'

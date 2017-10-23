@@ -9,6 +9,7 @@ exports.getComponent = ->
   c.inPorts.add 'exponent',
     datatype: 'number'
     required: true
+    control: true
   c.outPorts.add 'power',
     datatype: 'number'
 

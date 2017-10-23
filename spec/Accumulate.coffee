@@ -12,23 +12,27 @@ describe 'Accumulate component', ->
   reset = null
   emitreset = null
   cout = null
-  loader = null
-  before ->
-    loader = new noflo.ComponentLoader baseDir
-  beforeEach (done) ->
+  before (done) ->
     @timeout 4000
+    loader = new noflo.ComponentLoader baseDir
     loader.load 'math/Accumulate', (err, instance) ->
       return done err if err
       c = instance
       cin = noflo.internalSocket.createSocket()
       reset = noflo.internalSocket.createSocket()
       emitreset = noflo.internalSocket.createSocket()
-      cout = noflo.internalSocket.createSocket()
       c.inPorts.in.attach cin
       c.inPorts.reset.attach reset
       c.inPorts.emitreset.attach emitreset
-      c.outPorts.out.attach cout
       done()
+  beforeEach (done) ->
+    cout = noflo.internalSocket.createSocket()
+    c.outPorts.out.attach cout
+    c.start done
+  afterEach (done) ->
+    c.outPorts.out.detach cout
+    cout = null
+    c.shutdown done
 
   describe 'when instantiated', ->
     it 'should accumulate number', (done) ->

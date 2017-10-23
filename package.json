@@ -12,26 +12,7 @@
   },
   "license": "MIT",
   "noflo": {
-    "icon": "plus-circle",
-    "components": {
-      "Accumulate": "components/Accumulate.coffee",
-      "Add": "components/Add.coffee",
-      "CalculateAngle": "components/CalculateAngle.coffee",
-      "CalculateDistance": "components/CalculateDistance.coffee",
-      "Ceil": "components/Ceil.coffee",
-      "Compare": "components/Compare.coffee",
-      "CountSum": "components/CountSum.coffee",
-      "Divide": "components/Divide.coffee",
-      "Exponentiate": "components/Exponentiate.coffee",
-      "Floor": "components/Floor.coffee",
-      "MapRange": "components/MapRange.coffee",
-      "Modulo": "components/Modulo.coffee",
-      "Multiply": "components/Multiply.coffee",
-      "Random": "components/Random.coffee",
-      "RangedRandomInt": "components/RangedRandomInt.coffee",
-      "SendNumber": "components/SendNumber.coffee",
-      "Subtract": "components/Subtract.coffee"
-    }
+    "icon": "plus-circle"
   },
   "dependencies": {
     "noflo": "0.x >= 0.8"
@@ -49,7 +30,6 @@
     "grunt-mocha-phantomjs": "^4.0.0",
     "grunt-mocha-test": "^0.13.2",
     "grunt-noflo-browser": "^1.1.4",
-    "grunt-noflo-manifest": "^0.1.12",
     "json-loader": "^0.5.4",
     "mocha": "^4.0.0"
   },

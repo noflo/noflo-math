@@ -23,24 +23,24 @@ exports.getComponent = () ->
 
   c.forwardBrackets = {}
 
-  c.counter = 0
-  baseShutdown = c.shutdown
-  c.shutdown = ->
-    c.counter = 0
-    do baseShutdown
+  c.counter = {}
+  c.tearDown = (callback) ->
+    c.counter = {}
+    do callback
 
   c.process (input, output) ->
     if input.hasData 'reset'
       input.getData 'reset'
-      c.counter = 0
+      c.counter[input.scope] = 0
       emitReset = false
       emitReset = input.getData('emitreset') if input.hasData 'emitreset'
-      return output.sendDone c.counter if emitReset
+      return output.sendDone c.counter[input.scope] if emitReset
       return output.done()
 
     return unless input.hasData 'in'
 
     data = input.getData 'in'
-    c.counter += data
+    c.counter[input.scope] = 0 unless c.counter[input.scope]
+    c.counter[input.scope] += data
 
-    output.sendDone c.counter
+    output.sendDone c.counter[input.scope]

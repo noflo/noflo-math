@@ -10,6 +10,7 @@ exports.getComponent = ->
       divisor:
         datatype: 'all'
         required: true
+        control: true
     outPorts:
       quotient:
         datatype: 'all'
