@@ -2,7 +2,7 @@ noflo = require 'noflo'
 
 exports.getComponent = ->
   c = new noflo.Component
-  c.icon = 'caret'
+  c.icon = 'caret-up'
   c.inPorts.add 'base',
     datatype: 'number'
     required: true
