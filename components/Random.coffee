@@ -12,4 +12,6 @@ exports.getComponent = ->
         datatype: 'number'
 
   c.process (input, output) ->
+    return unless input.hasData 'in'
+    input.getData 'in'
     output.sendDone Math.random()
