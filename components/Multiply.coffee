@@ -10,6 +10,7 @@ exports.getComponent = ->
       multiplier:
         datatype: 'all'
         required: true
+        control: true
     outPorts:
       product:
         datatype: 'all'

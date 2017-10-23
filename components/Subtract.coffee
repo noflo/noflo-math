@@ -10,6 +10,7 @@ exports.getComponent = ->
       subtrahend:
         datatype: 'all'
         required: true
+        control: true
     outPorts:
       difference:
         datatype: 'all'
