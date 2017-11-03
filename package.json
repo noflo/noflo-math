@@ -15,7 +15,7 @@
     "icon": "plus-circle"
   },
   "dependencies": {
-    "noflo": "1.0.0"
+    "noflo": "^1.0.0"
   },
   "devDependencies": {
     "chai": "^4.0.0",
