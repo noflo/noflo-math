@@ -4,3 +4,6 @@
 /spec/*.js
 /spec/*.xml
 /spec/runner.html
+/dist/
+package-lock.json
+fbp.json
