@@ -1,11 +1,3 @@
-noflo = require 'noflo'
-unless noflo.isBrowser()
-  chai = require 'chai'
-  path = require 'path'
-  baseDir = path.resolve __dirname, '../'
-else
-  baseDir = 'noflo-math'
-
 describe 'Random component', ->
   c = null
   bang = null
