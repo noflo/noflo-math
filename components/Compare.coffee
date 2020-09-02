@@ -23,9 +23,9 @@ exports.getComponent = ->
   c.icon = 'check'
 
   c.forwardBrackets =
-    value: 'pass'
-    comparison: 'pass'
-    operator: 'pass'
+    value: ['pass']
+    comparison: ['pass']
+    operator: ['pass']
   c.process (input, output) ->
     return unless input.hasData 'value', 'comparison'
 

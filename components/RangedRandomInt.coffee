@@ -23,9 +23,9 @@ exports.getComponent = ->
   c.description = 'Generate a random number in the given range.'
 
   c.forwardBrackets =
-    in: 'out'
-    lower: 'out'
-    upper: 'out'
+    in: ['out']
+    lower: ['out']
+    upper: ['out']
 
   # On data flow.
   c.process (input, output) ->
