@@ -1,13 +1,14 @@
 language: node_js
 node_js:
-- 'lts/*'
+- lts/*
 before_script:
 - npm run build
 deploy:
   provider: npm
   email: henri.bergius@iki.fi
   api_key:
-    secure: l6oonejuxb4K/f6laroepFv4FE0O9XhxjYKJDNd9qWwcRIfePj8oVXSsFe7LHEDXN0+eThKRedNzxGmqDpQyX65/Q2ZvvHLijDhD+PuLF6YpVgcPOrkBRKUlppqScnNFHKd6X2TGjwv8IRLitHpGVZbjsOiT2FWgPeXwceaYOt4=
+    secure: YMTuGgmhsiiN6PEhv1oiSjus8LCG+ubkFhLNIhOiLT1l/ZfYL7pxwniO7WeazuF7xvGoPsACLngz/NkqbkhVzsjuqwkteqwkqCma1wAwIeUSLOuwTT1FGDsEXPQxClvZ1jvRXnUe/iLntmPaC+kOHgkWszNzizFYFdXmewggu00=
   on:
     tags: true
     repo: noflo/noflo-math
+  skip_cleanup: true
