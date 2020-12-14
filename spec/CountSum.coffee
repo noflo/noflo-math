@@ -18,10 +18,10 @@ describe 'CountSum component', ->
       c.outPorts.out.attach sum
       done()
     return
-  afterEach (done) ->
+  afterEach () ->
     c.outPorts.out.detach sum
     sum = null
-    c.shutdown done
+    return c.shutdown()
 
   describe 'with a single connected port', ->
     it 'should forward the same number', (done) ->
