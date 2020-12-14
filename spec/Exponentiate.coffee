@@ -14,6 +14,7 @@ describe 'Exponentiate component', ->
       c.inPorts.base.attach base
       c.inPorts.exponent.attach exponent
       done()
+    return
   beforeEach ->
     power = noflo.internalSocket.createSocket()
     c.outPorts.power.attach power

@@ -14,6 +14,7 @@ describe 'Multiply component', ->
       c.inPorts.multiplicand.attach multiplicand
       c.inPorts.multiplier.attach multiplier
       done()
+    return
   beforeEach ->
     product = noflo.internalSocket.createSocket()
     c.outPorts.product.attach product

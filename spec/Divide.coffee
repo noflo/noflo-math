@@ -14,6 +14,7 @@ describe 'Divide component', ->
       c.inPorts.dividend.attach dividend
       c.inPorts.divisor.attach divisor
       done()
+    return
   beforeEach ->
     quotient = noflo.internalSocket.createSocket()
     c.outPorts.quotient.attach quotient

@@ -11,6 +11,7 @@ describe 'Ceil component', ->
       vin = noflo.internalSocket.createSocket()
       c.inPorts.in.attach vin
       done()
+    return
   beforeEach ->
     vout = noflo.internalSocket.createSocket()
     c.outPorts.out.attach vout

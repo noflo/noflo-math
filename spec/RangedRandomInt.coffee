@@ -21,6 +21,7 @@ describe 'RangedRandomInt component', ->
       c.inPorts.upper.attach upper
       c.outPorts.out.attach result
       done()
+    return
 
   describe 'when instantiated', ->
 

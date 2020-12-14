@@ -27,6 +27,7 @@ describe 'MapRange component', ->
       c.inPorts.out_upper.attach out_upper
       c.outPorts.out.attach result
       done()
+    return
 
   describe 'when instantiated', ->
 

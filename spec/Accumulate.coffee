@@ -17,14 +17,15 @@ describe 'Accumulate component', ->
       c.inPorts.reset.attach reset
       c.inPorts.emitreset.attach emitreset
       done()
-  beforeEach (done) ->
+    return
+  beforeEach () ->
     cout = noflo.internalSocket.createSocket()
     c.outPorts.out.attach cout
-    c.start done
-  afterEach (done) ->
+    return c.start()
+  afterEach () ->
     c.outPorts.out.detach cout
     cout = null
-    c.shutdown done
+    return c.shutdown()
 
   describe 'when instantiated', ->
     it 'should accumulate number', (done) ->

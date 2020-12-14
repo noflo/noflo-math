@@ -19,6 +19,7 @@ describe 'CalculateDistance component', ->
       c.inPorts.destination.attach destination
       c.outPorts.distance.attach distance
       done()
+    return
 
   describe 'on calculating', ->
     it 'should return correct distance', (done) ->
