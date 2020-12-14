@@ -17,6 +17,7 @@ describe 'Accumulate component', ->
       c.inPorts.reset.attach reset
       c.inPorts.emitreset.attach emitreset
       done()
+    return
   beforeEach (done) ->
     cout = noflo.internalSocket.createSocket()
     c.outPorts.out.attach cout

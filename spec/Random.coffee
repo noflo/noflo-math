@@ -11,6 +11,7 @@ describe 'Random component', ->
       bang = noflo.internalSocket.createSocket()
       c.inPorts.in.attach bang
       done()
+    return
   beforeEach ->
     result = noflo.internalSocket.createSocket()
     c.outPorts.out.attach result

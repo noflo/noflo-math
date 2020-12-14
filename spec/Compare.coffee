@@ -18,6 +18,7 @@ describe 'Compare component', ->
       operator = noflo.internalSocket.createSocket()
       c.inPorts.operator.attach operator
       done()
+    return
   beforeEach ->
     pass = noflo.internalSocket.createSocket()
     c.outPorts.pass.attach pass

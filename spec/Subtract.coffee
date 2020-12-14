@@ -14,6 +14,7 @@ describe 'Subtract component', ->
       c.inPorts.minuend.attach minuend
       c.inPorts.subtrahend.attach subtrahend
       done()
+    return
   beforeEach ->
     difference = noflo.internalSocket.createSocket()
     c.outPorts.difference.attach difference

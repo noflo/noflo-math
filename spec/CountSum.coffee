@@ -17,6 +17,7 @@ describe 'CountSum component', ->
       sum = noflo.internalSocket.createSocket()
       c.outPorts.out.attach sum
       done()
+    return
   afterEach (done) ->
     c.outPorts.out.detach sum
     sum = null

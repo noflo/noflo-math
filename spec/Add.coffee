@@ -14,6 +14,7 @@ describe 'Add component', ->
       c.inPorts.augend.attach augend
       c.inPorts.addend.attach addend
       done()
+    return
   beforeEach ->
     sum = noflo.internalSocket.createSocket()
     c.outPorts.sum.attach sum

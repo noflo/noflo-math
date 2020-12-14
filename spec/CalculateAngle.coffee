@@ -19,6 +19,7 @@ describe 'CalculateAngle component', ->
       angle = noflo.internalSocket.createSocket()
       c.outPorts.angle.attach angle
       done()
+    return
   afterEach ->
     c.outPorts.angle.detach angle
     angle = null

@@ -14,6 +14,7 @@ describe 'Modulo component', ->
       c.inPorts.dividend.attach dividend
       c.inPorts.divisor.attach divisor
       done()
+    return
   beforeEach ->
     remainder = noflo.internalSocket.createSocket()
     c.outPorts.remainder.attach remainder
