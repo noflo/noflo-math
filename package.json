@@ -19,9 +19,6 @@
   },
   "devDependencies": {
     "chai": "^4.0.0",
-    "coffee-loader": "^2.0.0",
-    "coffeelint": "^2.1.0",
-    "coffeescript": "^2.3.2",
     "karma": "^5.2.2",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^3.1.0",
@@ -41,7 +38,6 @@
   "scripts": {
     "prebuild": "noflo-cache-preheat",
     "build": "webpack --config node_modules/noflo-webpack-config/webpack.config.js",
-    "pretest": "coffeelint -f coffeelint.json -r components && coffee -b -c spec",
     "test:node": "mocha --exit --require node_modules/noflo-webpack-config/inject.js spec/*.js",
     "test:browser": "karma start node_modules/noflo-webpack-config/karma.config.js",
     "test": "npm run test:node && npm run test:browser"
