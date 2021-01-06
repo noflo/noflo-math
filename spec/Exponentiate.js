@@ -1,41 +1,35 @@
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
-describe('Exponentiate component', function() {
+describe('Exponentiate component', () => {
   let c = null;
   let base = null;
   let exponent = null;
   let power = null;
-  before(function(done) {
+  before(function () {
     this.timeout(4000);
     const loader = new noflo.ComponentLoader(baseDir);
-    loader.load('math/Exponentiate', function(err, instance) {
-      if (err) { return done(err); }
-      c = instance;
-      base = noflo.internalSocket.createSocket();
-      exponent = noflo.internalSocket.createSocket();
-      c.inPorts.base.attach(base);
-      c.inPorts.exponent.attach(exponent);
-      return done();
-    });
+    return loader.load('math/Exponentiate')
+      .then((instance) => {
+        c = instance;
+        base = noflo.internalSocket.createSocket();
+        exponent = noflo.internalSocket.createSocket();
+        c.inPorts.base.attach(base);
+        c.inPorts.exponent.attach(exponent);
+      });
   });
-  beforeEach(function() {
+  beforeEach(() => {
     power = noflo.internalSocket.createSocket();
-    return c.outPorts.power.attach(power);
-  });
-  afterEach(function() {
     c.outPorts.power.attach(power);
-    return power = null;
+  });
+  afterEach(() => {
+    c.outPorts.power.attach(power);
+    power = null;
   });
 
-  return describe('when instantiated', () => it('should calculate 2 to the power 5 = 32', function(done) {
-    power.once('data', function(res) {
+  describe('when instantiated', () => it('should calculate 2 to the power 5 = 32', (done) => {
+    power.once('data', (res) => {
       chai.expect(res).to.equal(32);
-      return done();
+      done();
     });
     base.send(2);
-    return exponent.send(5);
+    exponent.send(5);
   }));
 });

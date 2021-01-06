@@ -1,46 +1,40 @@
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
-describe('Ceil component', function() {
+describe('Ceil component', () => {
   let c = null;
   let vin = null;
   let vout = null;
-  before(function(done) {
+  before(function () {
     this.timeout(4000);
     const loader = new noflo.ComponentLoader(baseDir);
-    loader.load('math/Ceil', function(err, instance) {
-      if (err) { return done(err); }
-      c = instance;
-      vin = noflo.internalSocket.createSocket();
-      c.inPorts.in.attach(vin);
-      return done();
-    });
+    return loader.load('math/Ceil')
+      .then((instance) => {
+        c = instance;
+        vin = noflo.internalSocket.createSocket();
+        c.inPorts.in.attach(vin);
+      });
   });
-  beforeEach(function() {
+  beforeEach(() => {
     vout = noflo.internalSocket.createSocket();
-    return c.outPorts.out.attach(vout);
+    c.outPorts.out.attach(vout);
   });
-  afterEach(function() {
+  afterEach(() => {
     c.outPorts.out.detach(vout);
-    return vout = null;
+    vout = null;
   });
 
-  return describe('when instantiated', function() {
-    it('should calculate 5.1 = 6', function(done) {
-      vout.once('data', function(res) {
+  describe('when instantiated', () => {
+    it('should calculate 5.1 = 6', (done) => {
+      vout.once('data', (res) => {
         chai.expect(res).to.equal(6);
-        return done();
+        done();
       });
-      return vin.send(5.1);
+      vin.send(5.1);
     });
-    return it('should calculate 2.9 = 3', function(done) {
-      vout.once('data', function(res) {
+    it('should calculate 2.9 = 3', (done) => {
+      vout.once('data', (res) => {
         chai.expect(res).to.equal(3);
-        return done();
+        done();
       });
-      return vin.send(2.9);
+      vin.send(2.9);
     });
   });
 });

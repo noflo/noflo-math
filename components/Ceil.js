@@ -1,29 +1,24 @@
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
 const noflo = require('noflo');
 
-exports.getComponent = function() {
+exports.getComponent = () => {
   const c = new noflo.Component({
     icon: 'arrow-up',
     description: 'Round a number up',
     inPorts: {
       in: {
-        datatype: 'number'
-      }
+        datatype: 'number',
+      },
     },
     outPorts: {
       out: {
-        datatype: 'int'
-      }
-    }
+        datatype: 'int',
+      },
+    },
   });
 
-  return c.process(function(input, output) {
+  return c.process((input, output) => {
     if (!input.hasData('in')) { return; }
     const data = input.getData('in');
-    return output.sendDone(Math.ceil(data));
+    output.sendDone(Math.ceil(data));
   });
 };

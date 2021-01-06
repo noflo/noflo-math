@@ -1,36 +1,31 @@
-/*
- * decaffeinate suggestions:
- * DS101: Remove unnecessary use of Array.from
- * DS102: Remove unnecessary code created because of implicit returns
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
 const noflo = require('noflo');
 
-exports.getComponent = function() {
+exports.getComponent = () => {
   const c = new noflo.Component({
     inPorts: {
       number: {
         datatype: 'number',
         required: true,
-        control: true
+        control: true,
       },
       in: {
         datatype: 'bang',
-        required: true
-      }
+        required: true,
+      },
     },
     outPorts: {
       out: {
         datatype: 'number',
-        required: true
-      }
-    }
+        required: true,
+      },
+    },
   });
 
-  return c.process(function(input, output) {
+  return c.process((input, output) => {
     if (!input.hasData('in', 'number')) { return; }
-    const [data, number] = Array.from(input.getData('in', 'number'));
+    input.getData('in');
+    const number = input.getData('number');
 
-    return output.sendDone({out: number});
+    output.sendDone({ out: number });
   });
 };

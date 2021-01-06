@@ -1,41 +1,35 @@
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
-describe('Multiply component', function() {
+describe('Multiply component', () => {
   let c = null;
   let multiplicand = null;
   let multiplier = null;
   let product = null;
-  before(function(done) {
+  before(function () {
     this.timeout(4000);
     const loader = new noflo.ComponentLoader(baseDir);
-    loader.load('math/Multiply', function(err, instance) {
-      if (err) { return done(err); }
-      c = instance;
-      multiplicand = noflo.internalSocket.createSocket();
-      multiplier = noflo.internalSocket.createSocket();
-      c.inPorts.multiplicand.attach(multiplicand);
-      c.inPorts.multiplier.attach(multiplier);
-      return done();
-    });
+    return loader.load('math/Multiply')
+      .then((instance) => {
+        c = instance;
+        multiplicand = noflo.internalSocket.createSocket();
+        multiplier = noflo.internalSocket.createSocket();
+        c.inPorts.multiplicand.attach(multiplicand);
+        c.inPorts.multiplier.attach(multiplier);
+      });
   });
-  beforeEach(function() {
+  beforeEach(() => {
     product = noflo.internalSocket.createSocket();
-    return c.outPorts.product.attach(product);
-  });
-  afterEach(function() {
     c.outPorts.product.attach(product);
-    return product = null;
+  });
+  afterEach(() => {
+    c.outPorts.product.attach(product);
+    product = null;
   });
 
-  return describe('when instantiated', () => it('should calculate 2 * 5', function(done) {
-    product.once('data', function(res) {
+  describe('when instantiated', () => it('should calculate 2 * 5', (done) => {
+    product.once('data', (res) => {
       chai.expect(res).to.equal(10);
-      return done();
+      done();
     });
     multiplicand.send(2);
-    return multiplier.send(5);
+    multiplier.send(5);
   }));
 });

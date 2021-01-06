@@ -1,54 +1,51 @@
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
 const noflo = require('noflo');
 
-exports.getComponent = function() {
+/* eslint-disable camelcase */
+
+exports.getComponent = () => {
   const c = new noflo.Component({
     inPorts: {
       in: {
         datatype: 'number',
-        required: true
+        required: true,
       },
       in_lower: {
         datatype: 'number',
         description: 'the lower bound of the input value',
         required: true,
-        control: true
+        control: true,
       },
       in_upper: {
         datatype: 'number',
         description: 'the uppwer bound of the input value',
         required: true,
-        control: true
+        control: true,
       },
       out_lower: {
         datatype: 'number',
         description: 'the lower bound of the output value',
         required: true,
-        control: true
+        control: true,
       },
       out_upper: {
         datatype: 'number',
         description: 'the uppwer bound of the output value',
         required: true,
-        control: true
-      }
+        control: true,
+      },
     },
     outPorts: {
       out: {
-        datatype: 'number'
-      }
-    }
+        datatype: 'number',
+      },
+    },
   });
 
   c.icon = 'reorder';
   c.description = 'Map a number from a source range to a target reange.';
 
   // On data flow.
-  return c.process(function(input, output) {
+  return c.process((input, output) => {
     if (!input.hasData('in', 'in_lower', 'in_upper', 'out_upper', 'out_lower')) { return; }
 
     const data = input.getData('in');
@@ -64,6 +61,6 @@ exports.getComponent = function() {
     const out_upper = Math.max(out_lower_data, out_upper_data);
     const out_range = out_upper - out_lower;
     const value = out_lower + (((data - in_lower) * out_range) / in_range);
-    return output.sendDone(value);
+    output.sendDone(value);
   });
 };
