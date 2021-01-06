@@ -36,7 +36,9 @@ describe('CountSum component', () => {
       }
     });
 
-    sends.forEach((first.send));
+    sends.forEach((data) => {
+      first.send(data);
+    });
     first.disconnect();
   }));
 
