@@ -31,9 +31,9 @@ exports.getComponent = () => {
   c.forwardBrackets = {};
 
   c.counter = {};
-  c.tearDown = () => {
+  c.tearDown = (callback) => {
     c.counter = {};
-    return Promise.resolve();
+    callback();
   };
 
   return c.process((input, output) => {
