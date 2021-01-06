@@ -6,7 +6,7 @@ describe('Add component', () => {
   before(function () {
     this.timeout(4000);
     const loader = new noflo.ComponentLoader(baseDir);
-    loader.load('math/Add')
+    return loader.load('math/Add')
       .then((instance) => {
         c = instance;
         augend = noflo.internalSocket.createSocket();

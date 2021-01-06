@@ -9,7 +9,7 @@ describe('CountSum component', () => {
   });
   beforeEach(function () {
     this.timeout(4000);
-    loader.load('math/CountSum')
+    return loader.load('math/CountSum')
       .then((instance) => {
         c = instance;
         first = noflo.internalSocket.createSocket();
@@ -22,7 +22,7 @@ describe('CountSum component', () => {
   afterEach(() => {
     c.outPorts.out.detach(sum);
     sum = null;
-    c.shutdown();
+    return c.shutdown();
   });
 
   describe('with a single connected port', () => it('should forward the same number', (done) => {
