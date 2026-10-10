@@ -1,31 +1,27 @@
-const noflo = require('noflo');
+import { Component } from "@noflo/noflo";
 
-exports.getComponent = () => {
-  const c = new noflo.Component({
+/** @returns {import("@noflo/noflo").Component} The configured component */
+export function getComponent() {
+  const c = new Component({
+    description: "Sends the number given on the number port when triggered",
     inPorts: {
-      number: {
-        datatype: 'number',
-        required: true,
-        control: true,
-      },
-      in: {
-        datatype: 'bang',
-        required: true,
-      },
+      number: { datatype: "number", control: true, required: true },
+      in: { datatype: "bang", required: true },
     },
     outPorts: {
-      out: {
-        datatype: 'number',
-        required: true,
-      },
+      out: { datatype: "number", required: true },
     },
   });
 
-  return c.process((input, output) => {
-    if (!input.hasData('in', 'number')) { return; }
-    input.getData('in');
-    const number = input.getData('number');
+  c.process((input, output) => {
+    if (!input.hasData("in", "number")) {
+      return;
+    }
+    input.getData("in");
+    const number = input.getData("number");
 
     output.sendDone({ out: number });
   });
-};
+
+  return c;
+}

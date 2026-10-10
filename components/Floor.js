@@ -1,24 +1,25 @@
-const noflo = require('noflo');
+import { Component } from "@noflo/noflo";
 
-exports.getComponent = () => {
-  const c = new noflo.Component({
-    icon: 'arrow-down',
-    description: 'Round a number down',
+/** @returns {import("@noflo/noflo").Component} The configured component */
+export function getComponent() {
+  const c = new Component({
+    icon: "arrow-down",
+    description: "Round a number down",
     inPorts: {
-      in: {
-        datatype: 'number',
-      },
+      in: { datatype: "number", required: true },
     },
     outPorts: {
-      out: {
-        datatype: 'int',
-      },
+      out: { datatype: "int" },
     },
   });
 
-  return c.process((input, output) => {
-    if (!input.hasData('in')) { return; }
-    const data = input.getData('in');
-    output.sendDone(Math.floor(data));
+  c.process((input, output) => {
+    if (!input.hasData("in")) {
+      return;
+    }
+    const data = input.getData("in");
+    output.sendDone({ out: Math.floor(data) });
   });
-};
+
+  return c;
+}

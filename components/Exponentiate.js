@@ -1,23 +1,25 @@
-const noflo = require('noflo');
+import { Component } from "@noflo/noflo";
 
-exports.getComponent = () => {
-  const c = new noflo.Component();
-  c.icon = 'caret-up';
-  c.inPorts.add('base', {
-    datatype: 'number',
-    required: true,
+/** @returns {import("@noflo/noflo").Component} The configured component */
+export function getComponent() {
+  const c = new Component({
+    icon: "caret-up",
+    inPorts: {
+      base: { datatype: "number", required: true },
+      exponent: { datatype: "number", control: true, required: true },
+    },
+    outPorts: {
+      out: { datatype: "number" },
+    },
   });
-  c.inPorts.add('exponent', {
-    datatype: 'number',
-    required: true,
-    control: true,
-  });
-  c.outPorts.add('power',
-    { datatype: 'number' });
 
-  return c.process((input, output) => {
-    if (!input.hasData('base', 'exponent')) { return; }
-    const [base, exponent] = input.getData('base', 'exponent');
-    output.sendDone({ power: (base ** exponent) });
+  c.process((input, output) => {
+    if (!input.hasData("base", "exponent")) {
+      return;
+    }
+    const [base, exponent] = input.getData("base", "exponent");
+    output.sendDone({ out: base ** exponent });
   });
-};
+
+  return c;
+}

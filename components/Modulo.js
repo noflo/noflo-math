@@ -1,28 +1,25 @@
-const noflo = require('noflo');
+import { Component } from "@noflo/noflo";
 
-exports.getComponent = () => {
-  const c = new noflo.Component({
+/** @returns {import("@noflo/noflo").Component} The configured component */
+export function getComponent() {
+  const c = new Component({
+    icon: "percent",
     inPorts: {
-      dividend: {
-        datatype: 'all',
-        required: true,
-      },
-      divisor: {
-        datatype: 'all',
-        required: true,
-        control: true,
-      },
+      dividend: { datatype: "number", required: true },
+      divisor: { datatype: "number", control: true, required: true },
     },
     outPorts: {
-      remainder: {
-        datatype: 'all',
-      },
+      out: { datatype: "number" },
     },
   });
 
-  return c.process((input, output) => {
-    if (!input.hasData('dividend', 'divisor')) { return; }
-    const [dividend, divisor] = input.getData('dividend', 'divisor');
-    output.sendDone(dividend % divisor);
+  c.process((input, output) => {
+    if (!input.hasData("dividend", "divisor")) {
+      return;
+    }
+    const [dividend, divisor] = input.getData("dividend", "divisor");
+    output.sendDone({ out: dividend % divisor });
   });
-};
+
+  return c;
+}

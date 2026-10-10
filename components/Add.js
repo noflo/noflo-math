@@ -1,31 +1,25 @@
-const noflo = require('noflo');
+import { Component } from "@noflo/noflo";
 
-exports.getComponent = () => {
-  const c = new noflo.Component({
-    icon: 'plus',
+/** @returns {import("@noflo/noflo").Component} The configured component */
+export function getComponent() {
+  const c = new Component({
+    icon: "plus",
     inPorts: {
-      augend: {
-        datatype: 'number',
-        required: true,
-      },
-      addend: {
-        datatype: 'number',
-        required: true,
-        control: true,
-      },
+      augend: { datatype: "number", required: true },
+      addend: { datatype: "number", control: true, required: true },
     },
     outPorts: {
-      sum: {
-        datatype: 'number',
-      },
+      sum: { datatype: "number" },
     },
   });
 
-  return c.process((input, output) => {
-    if (!input.hasData('augend', 'addend')) { return; }
-    const [augend, addend] = input.getData('augend', 'addend');
-    output.sendDone({
-      sum: Number(augend) + Number(addend),
-    });
+  c.process((input, output) => {
+    if (!input.hasData("augend", "addend")) {
+      return;
+    }
+    const [augend, addend] = input.getData("augend", "addend");
+    output.sendDone({ sum: Number(augend) + Number(addend) });
   });
-};
+
+  return c;
+}

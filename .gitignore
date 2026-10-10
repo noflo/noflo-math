@@ -1,8 +1,2 @@
 /node_modules/
-/browser/
-/components/*/
-/spec/*.xml
-/spec/runner.html
-/dist/
-package-lock.json
-fbp.json
+/fbp.json

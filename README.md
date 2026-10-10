@@ -1,10 +1,25 @@
-# noflo-math
+# @noflo/math
 
-Mathematical components for NoFlo
+Math Components for [NoFlo](http://noflojs.org/)
 
-## Changes
+This package provides components for mathematical operations in NoFlo
+programs: arithmetic, comparison, ranges, and random numbers.
 
-* 0.4.0 (January 06 2021)
-  - Ported to JavaScript
-* 0.3.1 (September 02 2020)
-  - Fixed a bracket forwarding issue with Compare component
+## Usage
+
+Install the package:
+
+    npm install @noflo/math
+
+The components are then available under the `math/` namespace, for
+example `math/Add` or `math/Compare`.
+
+Components include:
+
+- `Add`, `Subtract`, `Multiply`, `Divide`, `Modulo`, `Exponentiate` —
+  binary arithmetic
+- `Ceil`, `Floor`, `SendNumber` — number utilities
+- `Compare` — route values by comparison operator
+- `Accumulate`, `CountSum` — running sums
+- `MapRange`, `Random`, `RangedRandomInt` — ranges and randomness
+- `CalculateAngle`, `CalculateDistance` — point geometry

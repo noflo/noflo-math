@@ -1,29 +1,25 @@
-const noflo = require('noflo');
+import { Component } from "@noflo/noflo";
 
-exports.getComponent = () => {
-  const c = new noflo.Component({
-    icon: 'plus',
+/** @returns {import("@noflo/noflo").Component} The configured component */
+export function getComponent() {
+  const c = new Component({
+    icon: "minus",
     inPorts: {
-      minuend: {
-        datatype: 'all',
-        required: true,
-      },
-      subtrahend: {
-        datatype: 'all',
-        required: true,
-        control: true,
-      },
+      minuend: { datatype: "number", required: true },
+      subtrahend: { datatype: "number", control: true, required: true },
     },
     outPorts: {
-      difference: {
-        datatype: 'all',
-      },
+      out: { datatype: "number" },
     },
   });
 
-  return c.process((input, output) => {
-    if (!input.hasData('minuend', 'subtrahend')) { return; }
-    const [minuend, subtrahend] = input.getData('minuend', 'subtrahend');
-    output.sendDone(minuend - subtrahend);
+  c.process((input, output) => {
+    if (!input.hasData("minuend", "subtrahend")) {
+      return;
+    }
+    const [minuend, subtrahend] = input.getData("minuend", "subtrahend");
+    output.sendDone({ out: minuend - subtrahend });
   });
-};
+
+  return c;
+}

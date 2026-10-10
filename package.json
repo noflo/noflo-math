@@ -1,51 +1,42 @@
 {
-  "name": "noflo-math",
-  "description": "Mathematical components for NoFlo",
-  "version": "0.4.0",
-  "author": {
-    "name": "Henri Bergius",
-    "email": "henri.bergius@iki.fi"
-  },
+  "name": "@noflo/math",
+  "description": "Math Components for NoFlo",
+  "version": "2.0.0-alpha.1",
+  "keywords": [
+    "noflo",
+    "math",
+    "utilities"
+  ],
+  "author": "Henri Bergius <henri.bergius@iki.fi>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/noflo/noflo-math.git"
+    "url": "git+ssh://git@github.com/noflo/noflo-math.git"
   },
   "license": "MIT",
-  "noflo": {
-    "icon": "plus-circle"
-  },
   "dependencies": {
-    "noflo": "^1.0.0"
+    "@noflo/noflo": "^2.0.0-alpha.2"
   },
   "devDependencies": {
-    "chai": "^4.0.0",
-    "eslint": "^7.17.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-chai": "0.0.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-mocha": "^8.0.0",
-    "karma": "^6.0.0",
-    "karma-chai": "^0.1.0",
-    "karma-chrome-launcher": "^3.1.0",
-    "karma-mocha": "^2.0.1",
-    "karma-mocha-reporter": "^2.2.5",
-    "mocha": "^8.1.3",
-    "noflo-component-loader": "^0.4.0",
-    "noflo-runtime-headless": "^0.2.0",
-    "noflo-runtime-postmessage": "^0.13.0",
-    "noflo-webpack-config": "^2.0.0",
-    "webpack": "^5.0.0",
-    "webpack-cli": "^4.0.0"
+    "@biomejs/biome": "^2.0.0",
+    "@types/node": "^24.0.0",
+    "typescript": "^5.0.0"
   },
-  "keywords": [
-    "noflo"
-  ],
   "scripts": {
-    "prebuild": "noflo-cache-preheat",
-    "build": "webpack --config node_modules/noflo-webpack-config/webpack.config.js",
-    "pretest": "eslint components spec",
-    "test:node": "mocha --exit --require node_modules/noflo-webpack-config/inject.js spec/*.js",
-    "test:browser": "karma start node_modules/noflo-webpack-config/karma.config.js",
-    "test": "npm run test:node && npm run test:browser"
-  }
+    "lint": "npx @biomejs/biome check --use-editorconfig=true components/ test/",
+    "format": "npx @biomejs/biome check --use-editorconfig=true --write components/ test/",
+    "types": "tsc -p tsconfig.json",
+    "test": "npm run types && npm run lint && npm run test:node",
+    "test:node": "node --test test/*.test.js"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "files": [
+    "components/",
+    "test/",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ]
 }

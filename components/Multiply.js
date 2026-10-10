@@ -1,30 +1,28 @@
-const noflo = require('noflo');
+import { Component } from "@noflo/noflo";
 
-exports.getComponent = () => {
-  const c = new noflo.Component({
-    icon: 'asterisk',
+/** @returns {import("@noflo/noflo").Component} The configured component */
+export function getComponent() {
+  const c = new Component({
+    icon: "times",
     inPorts: {
-      multiplicand: {
-        datatype: 'all',
-        required: true,
-      },
-      multiplier: {
-        datatype: 'all',
-        required: true,
-        control: true,
-      },
+      multiplicand: { datatype: "number", required: true },
+      multiplier: { datatype: "number", control: true, required: true },
     },
     outPorts: {
-      product: {
-        datatype: 'all',
-        required: true,
-      },
+      product: { datatype: "number" },
     },
   });
 
-  return c.process((input, output) => {
-    if (!input.hasData('multiplicand', 'multiplier')) { return; }
-    const [multiplicand, multiplier] = input.getData('multiplicand', 'multiplier');
+  c.process((input, output) => {
+    if (!input.hasData("multiplicand", "multiplier")) {
+      return;
+    }
+    const [multiplicand, multiplier] = input.getData(
+      "multiplicand",
+      "multiplier",
+    );
     output.sendDone({ product: multiplicand * multiplier });
   });
-};
+
+  return c;
+}
